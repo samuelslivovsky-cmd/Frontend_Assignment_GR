@@ -48,6 +48,16 @@ Optional extras the brief rewards: i18next for strings, accessibility, responsiv
 
 ## Domain rules
 
+The design is a **3-step wizard**, one route per step so each can carry its own metadata:
+
+| Route | Step | Contents |
+| --- | --- | --- |
+| `/` | Výber útulku | target toggle, shelter select, amount + presets |
+| `/osobne-udaje` | Osobné údaje | first name, last name, e-mail, phone |
+| `/potvrdenie` | Potvrdenie | read-only summary, GDPR consent, submit |
+
+Each step validates against its own Zod schema and writes the parsed values into the zustand draft store (`features/donation/store.ts`). The draft is memory-only, so `RequireDraft` bounces a direct hit on a later step back to `/`. Plus two static pages: `/kontakt` and `/o-projekte` (the latter shows the `results` totals).
+
 Donation target: **general foundation contribution** or **a specific shelter**. Shelter is required when a specific shelter was chosen, optional otherwise — this conditional rule belongs in the Zod schema (`superRefine`), not in component logic.
 
 Amount: preset options plus a custom value. Required, must be > 0.
