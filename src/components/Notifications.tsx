@@ -1,6 +1,6 @@
 'use client'
 
-import type { ApiMessageType } from '@/lib/api/client'
+import type { ApiMessageType } from '@/api/client'
 import { useNotificationStore } from '@/store/notifications'
 
 const TONE: Record<ApiMessageType, string> = {

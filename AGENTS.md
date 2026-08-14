@@ -10,7 +10,7 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 
 # GoodBoy donation form — GoodRequest frontend assignment
 
-Donation form for the fictional GoodBoy foundation supporting Slovak dog shelters. Full brief in [README.md](README.md) (SK + EN). Design: [Figma](https://www.figma.com/design/fOYdJW8UqfZjT8o2WYigty/Frontend-Assignment-2.0).
+Donation form for the fictional GoodBoy foundation supporting Slovak dog shelters. Full brief and progress checklist in [assignment.md](assignment.md) (SK + EN); project overview in [README.md](README.md). Design: [Figma](https://www.figma.com/design/fOYdJW8UqfZjT8o2WYigty/Frontend-Assignment-2.0).
 
 Visual quality, animations and project structure are all graded, not just correctness.
 

@@ -1,4 +1,4 @@
-import type { ContributionPayload } from '@/lib/api/shelters'
+import type { ContributionPayload } from '@/api/shelters'
 
 import type { PersonalStepValues, ShelterStepValues } from './schema'
 

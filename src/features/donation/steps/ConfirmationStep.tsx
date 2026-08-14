@@ -4,7 +4,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { useRouter } from 'next/navigation'
 import { useForm } from 'react-hook-form'
 
-import { errorMessage } from '@/lib/api/client'
+import { errorMessage } from '@/api/client'
 import { useNotificationStore } from '@/store/notifications'
 
 import { toContributionPayload } from '../payload'

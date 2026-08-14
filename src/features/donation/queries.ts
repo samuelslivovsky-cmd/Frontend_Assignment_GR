@@ -6,7 +6,7 @@ import {
   getContributionResults,
   getShelters,
   postContribution,
-} from '@/lib/api/shelters'
+} from '@/api/shelters'
 
 export const shelterKeys = {
   all: ['shelters'] as const,

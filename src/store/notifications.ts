@@ -1,6 +1,6 @@
 import { create } from 'zustand'
 
-import type { ApiMessageType } from '@/lib/api/client'
+import type { ApiMessageType } from '@/api/client'
 
 export type Notification = {
   id: number
