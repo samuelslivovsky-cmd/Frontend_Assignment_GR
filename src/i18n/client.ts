@@ -23,6 +23,16 @@ if (!i18next.isInitialized) {
   })
 }
 
+// Hot reloads re-run this module but leave the i18next singleton in place, so an
+// edited locale file would keep serving its old strings until the dev server is
+// restarted. Because only the server process holds the stale copy, the symptom is
+// a hydration mismatch rather than a missing translation.
+if (process.env.NODE_ENV !== 'production') {
+  for (const [locale, { translation }] of Object.entries(resources)) {
+    i18next.addResourceBundle(locale, 'translation', translation, true, true)
+  }
+}
+
 const isSupported = (value: string | null): value is Locale =>
   LOCALES.includes(value as Locale)
 

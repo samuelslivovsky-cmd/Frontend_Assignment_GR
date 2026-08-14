@@ -62,7 +62,7 @@ export function PersonalStep() {
 
   return (
     <form onSubmit={onSubmit} noValidate className="flex h-full flex-col gap-8">
-      <h1 className="text-5xl leading-[1.15] font-bold tracking-tight text-gray-900">
+      <h1 className="text-3xl leading-[1.15] font-bold tracking-tight text-gray-900 sm:text-4xl lg:text-5xl">
         {t('personalStep.heading')}
       </h1>
 

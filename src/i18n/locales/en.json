@@ -35,6 +35,7 @@
   },
   "steps": {
     "progress": "Form progress",
+    "counter": "Step {{current}} of {{total}}",
     "completed": "— completed",
     "shelter": "Choose a shelter",
     "personal": "Personal details",

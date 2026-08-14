@@ -89,7 +89,7 @@ export function ConfirmationStep() {
 
   return (
     <form onSubmit={onSubmit} noValidate className="flex h-full flex-col gap-8">
-      <h1 className="text-5xl leading-[1.15] font-bold tracking-tight text-gray-900">
+      <h1 className="text-3xl leading-[1.15] font-bold tracking-tight text-gray-900 sm:text-4xl lg:text-5xl">
         {t('confirmationStep.heading')}
       </h1>
 
@@ -104,9 +104,9 @@ export function ConfirmationStep() {
             className={`flex flex-col gap-4 ${index > 0 ? 'border-t border-gray-200 pt-6' : ''}`}
           >
             {rows.map(({ label, value }) => (
-              <div key={label} className="flex items-center justify-between gap-6 text-sm">
-                <dt className="text-gray-600">{label}</dt>
-                <dd className="text-right font-semibold text-gray-900">
+              <div key={label} className="flex items-center justify-between gap-4 text-sm sm:gap-6">
+                <dt className="shrink-0 text-gray-600">{label}</dt>
+                <dd className="min-w-0 text-right font-semibold break-words text-gray-900">
                   {value ?? <Skeleton className="h-4 w-44" />}
                 </dd>
               </div>

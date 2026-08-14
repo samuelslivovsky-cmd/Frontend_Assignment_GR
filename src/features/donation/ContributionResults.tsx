@@ -40,7 +40,7 @@ export function ContributionResults() {
     <dl className="grid gap-8 sm:grid-cols-2">
       {stats.map(({ value, label }) => (
         <div key={label} className="flex flex-col items-center gap-2 text-center">
-          <dd className="text-6xl font-bold tracking-tight text-indigo-600">{value}</dd>
+          <dd className="text-4xl font-bold tracking-tight text-indigo-600 sm:text-5xl lg:text-6xl">{value}</dd>
           <dt className="text-gray-700">{label}</dt>
         </div>
       ))}

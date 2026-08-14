@@ -48,7 +48,7 @@ export function ThankYou() {
         </motion.span>
       </div>
 
-      <h1 className="text-5xl leading-[1.15] font-bold tracking-tight text-gray-900">
+      <h1 className="text-3xl leading-[1.15] font-bold tracking-tight text-gray-900 sm:text-4xl lg:text-5xl">
         {t('thanks.heading')}
       </h1>
 

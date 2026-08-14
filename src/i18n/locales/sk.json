@@ -35,6 +35,7 @@
   },
   "steps": {
     "progress": "Priebeh formulára",
+    "counter": "Krok {{current}} z {{total}}",
     "completed": "— vyplnené",
     "shelter": "Výber útulku",
     "personal": "Osobné údaje",

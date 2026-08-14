@@ -19,7 +19,7 @@ const LEVELS = [
 const THRESHOLDS = [1, 10, 30, 100]
 
 // Explicit classes rather than a merged className, so the two sizes can never collide.
-const SIZES = { md: 'size-24', lg: 'size-40' }
+const SIZES = { md: 'size-16 sm:size-24', lg: 'size-32 sm:size-40' }
 
 function levelFor(amount: number): number {
   if (!Number.isFinite(amount) || amount <= 0) return 0

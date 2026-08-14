@@ -19,8 +19,9 @@ export function DogPhoto() {
   const [hasHovered, setHasHovered] = useState(false)
 
   return (
+    // Fluid width, not a fixed 602px: at 1024px the fixed value pushed the page 50px wide.
     <div
-      className="relative hidden w-[602px] shrink-0 lg:block"
+      className="relative hidden w-[46%] max-w-[602px] shrink-0 lg:block"
       onMouseEnter={() => {
         setHasHovered(true)
         setBarking(true)
@@ -33,7 +34,7 @@ export function DogPhoto() {
         alt=""
         fill
         priority
-        sizes="602px"
+        sizes="(min-width: 1400px) 602px, (min-width: 1024px) 46vw, 0px"
         className="rounded-2xl object-cover"
       />
 
@@ -49,7 +50,7 @@ export function DogPhoto() {
             alt=""
             fill
             loading="eager"
-            sizes="602px"
+            sizes="(min-width: 1400px) 602px, (min-width: 1024px) 46vw, 0px"
             className="rounded-2xl object-cover"
           />
         </motion.div>

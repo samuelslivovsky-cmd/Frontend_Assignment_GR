@@ -23,20 +23,39 @@ export function Footer() {
   const { t } = useTranslation()
 
   return (
-    <footer className="flex flex-wrap items-center justify-between gap-6 border-t border-gray-200 py-6">
-      <motion.div
-        whileHover={{ rotate: -3, scale: 1.06 }}
-        whileTap={{ rotate: 0, scale: 0.97 }}
-        transition={{ type: 'spring', stiffness: 400, damping: 12 }}
-        className="origin-left"
-      >
-        <Link href="/" aria-label={t('common.home')} className="block">
-          <Image src="/images/logo.svg" alt="Good boy" width={124} height={32} priority />
-        </Link>
-      </motion.div>
+    <footer className="flex flex-col gap-5 border-t border-gray-200 py-6 sm:flex-row sm:flex-wrap sm:items-center sm:gap-6">
+      {/* Phones get two balanced rows: logo + links, then icons + language. From `sm`
+          both wrappers dissolve and `order` restores the single-line desktop layout. */}
+      <div className="flex items-center justify-between gap-4 sm:contents">
+        <motion.div
+          whileHover={{ rotate: -3, scale: 1.06 }}
+          whileTap={{ rotate: 0, scale: 0.97 }}
+          transition={{ type: 'spring', stiffness: 400, damping: 12 }}
+          className="origin-left"
+        >
+          <Link href="/" aria-label={t('common.home')} className="block">
+            <Image src="/images/logo.svg" alt="Good boy" width={124} height={32} priority />
+          </Link>
+        </motion.div>
 
-      <div className="flex items-center gap-6">
-        <div className="flex items-center gap-4 text-gray-500">
+        <nav className="flex gap-6 text-sm text-gray-700 sm:order-2">
+          {LINKS.map(({ href, labelKey }) => (
+            <Link
+              key={href}
+              href={href}
+              className="group relative transition-colors hover:text-gray-900"
+            >
+              {t(labelKey)}
+              {/* Underline grows from the left instead of just appearing. */}
+              <span className="absolute -bottom-1 left-0 h-0.5 w-full origin-left scale-x-0 rounded-full bg-indigo-600 transition-transform duration-200 ease-out group-hover:scale-x-100" />
+            </Link>
+          ))}
+        </nav>
+      </div>
+
+      <div className="flex items-center justify-between gap-4 sm:contents">
+        {/* `ml-auto` on the first item of the desktop group pushes all three right. */}
+        <div className="flex items-center gap-4 text-gray-500 sm:order-1 sm:ml-auto">
           {SOCIALS.map(({ href, label, Icon }) => (
             <motion.a
               key={label}
@@ -51,20 +70,10 @@ export function Footer() {
             </motion.a>
           ))}
         </div>
-        <nav className="flex gap-6 text-sm text-gray-700">
-          {LINKS.map(({ href, labelKey }) => (
-            <Link
-              key={href}
-              href={href}
-              className="group relative transition-colors hover:text-gray-900"
-            >
-              {t(labelKey)}
-              {/* Underline grows from the left instead of just appearing. */}
-              <span className="absolute -bottom-1 left-0 h-0.5 w-full origin-left scale-x-0 rounded-full bg-indigo-600 transition-transform duration-200 ease-out group-hover:scale-x-100" />
-            </Link>
-          ))}
-        </nav>
-        <LanguageSwitcher />
+
+        <div className="sm:order-3">
+          <LanguageSwitcher />
+        </div>
       </div>
     </footer>
   )

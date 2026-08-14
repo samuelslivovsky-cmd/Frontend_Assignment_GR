@@ -36,7 +36,7 @@ export function ContactContent() {
   return (
     <div className="flex flex-col gap-12">
       <BackLink />
-      <h1 className="text-6xl leading-[1.15] font-bold tracking-tight text-gray-900">
+      <h1 className="text-4xl leading-[1.15] font-bold tracking-tight text-gray-900 sm:text-5xl lg:text-6xl">
         {t('contact.heading')}
       </h1>
 
@@ -60,6 +60,7 @@ export function ContactContent() {
           src="/images/dog-contact.png"
           alt=""
           fill
+          priority
           sizes="(min-width: 1200px) 1120px, 100vw"
           className="rounded-2xl object-cover"
         />

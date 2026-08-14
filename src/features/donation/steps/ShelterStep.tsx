@@ -65,17 +65,19 @@ export function ShelterStep() {
 
   return (
     <form onSubmit={onSubmit} noValidate className="flex h-full flex-col gap-8">
-      <h1 className="text-5xl leading-[1.15] font-bold tracking-tight text-gray-900">
+      <h1 className="text-3xl leading-[1.15] font-bold tracking-tight text-gray-900 sm:text-4xl lg:text-5xl">
         {t('shelterStep.heading')}
       </h1>
 
       <fieldset>
         <legend className="sr-only">{t('shelterStep.targetLegend')}</legend>
-        <div className="grid grid-cols-2 rounded-2xl border border-gray-200 p-1">
+        {/* Both labels never fit side by side on a phone, so below `sm` they stack
+            rather than wrap mid-sentence. */}
+        <div className="grid gap-1 rounded-2xl border border-gray-200 p-1 sm:grid-cols-2 sm:gap-0">
           {DONATION_TARGETS.map((value) => (
             <label
               key={value}
-              className={`relative rounded-xl px-4 py-3 text-center text-sm font-medium transition-colors ${
+              className={`relative rounded-xl px-2 py-3 text-center text-xs font-medium whitespace-nowrap transition-colors xl:px-4 xl:text-sm ${
                 target === value ? 'text-white' : 'text-gray-700'
               }`}
             >
@@ -154,7 +156,7 @@ export function ShelterStep() {
               aria-describedby={errors.amount ? 'amount-error' : undefined}
               // `ch` tracks the digit width of the current font, so the field hugs the value.
               style={{ width: `${Math.max(1, String(amount ?? '').length) + 0.6}ch` }}
-              className="bg-transparent text-center text-6xl font-normal text-gray-900 outline-none transition-[width] duration-150 placeholder:text-gray-300"
+              className="bg-transparent text-center text-5xl font-normal text-gray-900 sm:text-6xl outline-none transition-[width] duration-150 placeholder:text-gray-300"
               {...register('amount')}
             />
             <span className="text-2xl text-gray-500">€</span>
@@ -171,7 +173,7 @@ export function ShelterStep() {
           </p>
         )}
 
-        <div className="grid grid-cols-3 gap-3 sm:grid-cols-6">
+        <div className="grid grid-cols-3 gap-3 xl:grid-cols-6">
           {AMOUNT_PRESETS.map((preset) => (
             <Button
               key={preset}

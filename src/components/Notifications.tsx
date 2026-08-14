@@ -22,7 +22,7 @@ export function Notifications() {
     <div
       role="status"
       aria-live="polite"
-      className="pointer-events-none fixed top-4 right-4 z-50 flex w-80 flex-col gap-2"
+      className="pointer-events-none fixed top-4 right-4 left-4 z-50 flex flex-col gap-2 sm:left-auto sm:w-80"
     >
       <AnimatePresence initial={false}>
         {notifications.map(({ id, type, message }) => (
