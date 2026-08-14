@@ -4,6 +4,7 @@ import { Inter } from 'next/font/google'
 import { Notifications } from '@/components/Notifications'
 import { DEFAULT_LOCALE } from '@/i18n/config'
 import { serverT } from '@/i18n/server'
+import { SITE_URL } from '@/seo'
 
 import './globals.css'
 import { Providers } from './providers'
@@ -15,7 +16,7 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   // Without a base, Next cannot turn the generated og:image into an absolute URL.
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? 'http://localhost:3000'),
+  metadataBase: new URL(SITE_URL),
   title: {
     default: serverT('meta.siteName'),
     template: `%s | ${serverT('meta.siteName')}`,

@@ -38,6 +38,7 @@
 
 - [x] SEO — vlastný title a description pre každý krok formulára
 - [x] SEO — og:image generovaný pre každú routu cez `next/og`, plus favicon
+- [x] SEO — `robots.txt`, `sitemap.xml`, canonical URL, `noindex` na krokoch mimo vstupnej stránky
 - [x] Responzívne zobrazenie — overené na 360 / 390 / 768 / 1024 / 1280 / 1440 px bez horizontálneho pretoku
 - [ ] Viacero darcov
 

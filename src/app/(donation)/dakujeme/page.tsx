@@ -1,12 +1,11 @@
-import type { Metadata } from 'next'
-
 import { ThankYou } from '@/features/donation/ThankYou'
-import { serverT } from '@/i18n/server'
+import { pageMetadata } from '@/seo'
 
-export const metadata: Metadata = {
-  title: serverT('meta.thanksTitle'),
-  description: serverT('meta.thanksDescription'),
-}
+export const metadata = pageMetadata({
+  path: '/dakujeme',
+  titleKey: 'meta.thanksTitle',
+  descriptionKey: 'meta.thanksDescription',
+})
 
 export default function ThankYouPage() {
   return <ThankYou />

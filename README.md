@@ -16,7 +16,9 @@ pnpm build   # produkčný build, zároveň slúži ako typecheck
 pnpm lint    # ESLint
 ```
 
-Projekt používa **pnpm**. API beží na verejnom endpointe bez autentifikácie, takže nie je potrebná žiadna konfigurácia. Adresu sa dá prepísať cez `NEXT_PUBLIC_API_URL` v `.env.local`.
+Projekt používa **pnpm**. API beží na verejnom endpointe bez autentifikácie, takže na lokálny vývoj nie je potrebná žiadna konfigurácia. Adresu sa dá prepísať cez `NEXT_PUBLIC_API_URL` v `.env.local`.
+
+Pri nasadení treba nastaviť `NEXT_PUBLIC_SITE_URL` na verejnú adresu — z nej sa skladajú absolútne URL pre `og:image`, canonical a sitemap. Bez nej sa použije `http://localhost:3000` a náhľady odkazov na sociálnych sieťach ostanú prázdne.
 
 ## Technológie
 

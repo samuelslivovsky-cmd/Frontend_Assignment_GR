@@ -1,13 +1,12 @@
-﻿import type { Metadata } from 'next'
-
 import { RequireDraft } from '@/features/donation/RequireDraft'
 import { ConfirmationStep } from '@/features/donation/steps/ConfirmationStep'
-import { serverT } from '@/i18n/server'
+import { pageMetadata } from '@/seo'
 
-export const metadata: Metadata = {
-  title: serverT('meta.confirmationStepTitle'),
-  description: serverT('meta.confirmationStepDescription'),
-}
+export const metadata = pageMetadata({
+  path: '/potvrdenie',
+  titleKey: 'meta.confirmationStepTitle',
+  descriptionKey: 'meta.confirmationStepDescription',
+})
 
 export default function ConfirmationStepPage() {
   return (
