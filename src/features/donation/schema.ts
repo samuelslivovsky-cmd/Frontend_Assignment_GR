@@ -4,6 +4,9 @@ import { z } from 'zod'
 export const DONATION_TARGETS = ['SHELTER', 'FOUNDATION'] as const
 export const PHONE_PREFIXES = ['+421', '+420'] as const
 
+/** Above this the donation is worth arranging personally rather than through a web form. */
+export const MAX_DONATION = 10_000
+
 export type PhonePrefix = (typeof PHONE_PREFIXES)[number]
 
 // Schemas are built per translation function so validation messages follow the
@@ -22,6 +25,10 @@ const amount = (t: TFunction) =>
     .min(1, t('validation.amountRequired'))
     .transform((value) => Number(value.replace(',', '.')))
     .refine((value) => Number.isFinite(value) && value > 0, t('validation.amountPositive'))
+    .refine(
+      (value) => !Number.isFinite(value) || value <= MAX_DONATION,
+      t('validation.amountTooLarge', { max: MAX_DONATION }),
+    )
 
 // The select holds an empty string for "no shelter picked".
 const shelterId = z.string().transform((value) => (value === '' ? null : Number(value)))

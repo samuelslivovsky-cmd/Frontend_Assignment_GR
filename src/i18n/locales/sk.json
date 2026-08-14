@@ -104,6 +104,7 @@
     "labelLastName": "Priezvisko",
     "amountRequired": "Zadajte výšku príspevku.",
     "amountPositive": "Príspevok musí byť väčší ako 0 €.",
+    "amountTooLarge": "Ohó, {{max, number}} € je náš strop pre online formulár — pri takejto štedrosti už chceme psíky predstaviť osobne. Ozvite sa nám cez stránku Kontakt a dohodneme zvyšok.",
     "shelterRequired": "Vyberte útulok, ktorému chcete prispieť.",
     "emailInvalid": "Zadajte platnú e-mailovú adresu.",
     "phoneInvalid": "Zadajte 9-miestne číslo bez predvoľby.",

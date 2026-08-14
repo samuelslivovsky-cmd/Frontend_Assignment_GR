@@ -104,6 +104,7 @@
     "labelLastName": "Last name",
     "amountRequired": "Enter the donation amount.",
     "amountPositive": "The donation must be greater than €0.",
+    "amountTooLarge": "Whoa, €{{max, number}} is the ceiling for our online form — a gift this generous deserves an introduction to the dogs in person. Reach out through the Contact page and we will arrange the rest.",
     "shelterRequired": "Pick the shelter you want to donate to.",
     "emailInvalid": "Enter a valid email address.",
     "phoneInvalid": "Enter a 9-digit number without the country code.",

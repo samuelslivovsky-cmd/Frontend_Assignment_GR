@@ -60,7 +60,7 @@ Each step validates against its own Zod schema and writes the parsed values into
 
 Donation target: **general foundation contribution** or **a specific shelter**. Shelter is required when a specific shelter was chosen, optional otherwise — this conditional rule belongs in the Zod schema (`superRefine`), not in component logic.
 
-Amount: preset options plus a custom value. Required, must be > 0.
+Amount: preset options plus a custom value. Required, must be > 0 and at most `MAX_DONATION` (10 000 €) — above that the form asks the donor to arrange it through the contact page. The input widens with the value using `ch` units.
 
 Personal data:
 

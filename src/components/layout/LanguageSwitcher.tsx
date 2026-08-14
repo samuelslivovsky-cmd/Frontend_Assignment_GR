@@ -8,23 +8,30 @@ export function LanguageSwitcher() {
   const { t, i18n } = useTranslation()
 
   return (
-    <div className="flex items-center gap-1 text-sm" role="group" aria-label={t('common.language')}>
-      {LOCALES.map((locale: Locale) => (
-        <button
-          key={locale}
-          type="button"
-          lang={locale}
-          aria-pressed={i18n.resolvedLanguage === locale}
-          onClick={() => void i18n.changeLanguage(locale)}
-          className={`rounded px-2 py-1 ${
-            i18n.resolvedLanguage === locale
-              ? 'font-semibold text-gray-900'
-              : 'text-gray-500 hover:text-gray-900'
-          }`}
-        >
-          {LOCALE_LABELS[locale]}
-        </button>
-      ))}
+    <div
+      role="group"
+      aria-label={t('common.language')}
+      className="flex items-center gap-1 rounded-lg border border-gray-200 p-1"
+    >
+      {LOCALES.map((locale: Locale) => {
+        const isActive = i18n.resolvedLanguage === locale
+
+        return (
+          <button
+            key={locale}
+            type="button"
+            lang={locale}
+            aria-pressed={isActive}
+            onClick={() => void i18n.changeLanguage(locale)}
+            className={`rounded-md px-3 py-1.5 text-xs font-semibold uppercase transition-colors ${
+              isActive ? 'bg-indigo-600 text-white' : 'text-gray-500 hover:bg-gray-50'
+            }`}
+          >
+            <span aria-hidden>{locale}</span>
+            <span className="sr-only">{LOCALE_LABELS[locale]}</span>
+          </button>
+        )
+      })}
     </div>
   )
 }

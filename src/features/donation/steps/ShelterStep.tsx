@@ -9,6 +9,7 @@ import { useTranslation } from 'react-i18next'
 import { Field } from '@/components/form/Field'
 import { Button, Select } from '@/components/form/inputs'
 
+import { DonationDog } from '../DonationDog'
 import { useShelters } from '../queries'
 import {
   DONATION_TARGETS,
@@ -121,7 +122,7 @@ export function ShelterStep() {
           {t('shelterStep.amountLabel')}
         </label>
 
-        <div className="flex justify-center">
+        <div className="relative flex items-center justify-center">
           <span className="inline-flex items-baseline gap-1 border-b-2 border-indigo-600 pb-2">
             <input
               id="amount"
@@ -129,10 +130,16 @@ export function ShelterStep() {
               placeholder="0"
               aria-invalid={errors.amount ? true : undefined}
               aria-describedby={errors.amount ? 'amount-error' : undefined}
-              className="w-28 bg-transparent text-center text-6xl font-normal text-gray-900 outline-none placeholder:text-gray-300"
+              // `ch` tracks the digit width of the current font, so the field hugs the value.
+              style={{ width: `${Math.max(1, String(amount ?? '').length) + 0.6}ch` }}
+              className="bg-transparent text-center text-6xl font-normal text-gray-900 outline-none transition-[width] duration-150 placeholder:text-gray-300"
               {...register('amount')}
             />
             <span className="text-2xl text-gray-500">€</span>
+          </span>
+          {/* Absolute so the amount stays optically centred, as in the design. */}
+          <span className="absolute right-0">
+            <DonationDog amount={Number(String(amount).replace(',', '.'))} />
           </span>
         </div>
 
