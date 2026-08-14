@@ -18,8 +18,6 @@ const EUR = new Intl.NumberFormat('sk-SK', { style: 'currency', currency: 'EUR' 
 const formatPhone = (prefix: string, digits: string) =>
   `${prefix} ${digits.replace(/(\d{3})(\d{3})(\d{3})/, '$1 $2 $3')}`
 
-type SummaryRow = { label: string; value: string }
-
 export function ConfirmationStep() {
   const router = useRouter()
   const shelter = useDonationStore((state) => state.shelter)
@@ -42,19 +40,23 @@ export function ConfirmationStep() {
 
   const shelterName = shelters.data?.find((item) => item.id === shelter.shelterId)?.name
 
-  const summary: SummaryRow[] = [
-    {
-      label: 'Forma pomoci',
-      value:
-        shelter.target === 'SHELTER'
-          ? 'Finančný príspevok konkrétnemu útulku'
-          : 'Finančný príspevok celej nadácii',
-    },
-    { label: 'Útulok', value: shelterName ?? 'Nevybraný' },
-    { label: 'Suma príspevku', value: EUR.format(shelter.amount) },
-    { label: 'Meno a priezvisko', value: `${personal.firstName} ${personal.lastName}` },
-    { label: 'E-mail', value: personal.email },
-    { label: 'Telefónne číslo', value: formatPhone(personal.phonePrefix, personal.phone) },
+  const groups = [
+    [
+      {
+        label: 'Forma pomoci',
+        value:
+          shelter.target === 'SHELTER'
+            ? 'Finančný príspevok konkrétnemu útulku'
+            : 'Finančný príspevok celej nadácii',
+      },
+      { label: 'Útulok', value: shelterName ?? 'Nevybraný' },
+      { label: 'Suma príspevku', value: EUR.format(shelter.amount) },
+    ],
+    [
+      { label: 'Meno a priezvisko', value: `${personal.firstName} ${personal.lastName}` },
+      { label: 'E-mail', value: personal.email },
+      { label: 'Telefónne číslo', value: formatPhone(personal.phonePrefix, personal.phone) },
+    ],
   ]
 
   const onSubmit = handleSubmit(() =>
@@ -69,21 +71,36 @@ export function ConfirmationStep() {
   )
 
   return (
-    <form onSubmit={onSubmit} noValidate className="flex flex-col gap-8">
-      <h1 className="text-4xl font-bold tracking-tight">Skontrolujte si zadané údaje</h1>
+    <form onSubmit={onSubmit} noValidate className="flex h-full flex-col gap-8">
+      <h1 className="text-5xl leading-[1.15] font-bold tracking-tight text-gray-900">
+        Skontrolujte si zadané údaje
+      </h1>
 
-      <dl className="flex flex-col gap-3">
-        {summary.map(({ label, value }) => (
-          <div key={label} className="flex justify-between gap-4 text-sm">
-            <dt className="text-gray-600">{label}</dt>
-            <dd className="font-semibold text-gray-900">{value}</dd>
-          </div>
+      <section className="flex flex-col gap-5">
+        <h2 className="text-sm font-semibold text-gray-900">Zhrnutie</h2>
+
+        {groups.map((rows, index) => (
+          <dl
+            key={rows[0].label}
+            className={`flex flex-col gap-4 ${index > 0 ? 'border-t border-gray-200 pt-6' : ''}`}
+          >
+            {rows.map(({ label, value }) => (
+              <div key={label} className="flex justify-between gap-6 text-sm">
+                <dt className="text-gray-600">{label}</dt>
+                <dd className="text-right font-semibold text-gray-900">{value}</dd>
+              </div>
+            ))}
+          </dl>
         ))}
-      </dl>
+      </section>
 
-      <div className="flex flex-col gap-1 border-t border-gray-200 pt-6">
-        <label className="flex items-start gap-2 text-sm">
-          <input type="checkbox" {...register('consent')} />
+      <div className="flex flex-col gap-2 border-t border-gray-200 pt-6">
+        <label className="flex items-center gap-3 text-sm text-gray-900">
+          <input
+            type="checkbox"
+            className="size-4 accent-indigo-600"
+            {...register('consent')}
+          />
           Súhlasím so spracovaním mojich osobných údajov
         </label>
         {errors.consent && (

@@ -12,7 +12,7 @@ type StepActionsProps = {
 
 export function StepActions({ backHref, submitLabel, withArrow, isSubmitting }: StepActionsProps) {
   return (
-    <div className="flex items-center justify-between gap-4 pt-2">
+    <div className="mt-auto flex items-center justify-between gap-4 pt-8">
       {backHref ? (
         <Link
           href={backHref}

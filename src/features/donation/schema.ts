@@ -3,6 +3,8 @@ import { z } from 'zod'
 export const DONATION_TARGETS = ['SHELTER', 'FOUNDATION'] as const
 export const PHONE_PREFIXES = ['+421', '+420'] as const
 
+export type PhonePrefix = (typeof PHONE_PREFIXES)[number]
+
 const requiredText = (label: string, min: number, max: number) =>
   z
     .string()
