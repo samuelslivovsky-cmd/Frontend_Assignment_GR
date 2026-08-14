@@ -1,0 +1,64 @@
+import type { ComponentProps } from 'react'
+
+type IconProps = ComponentProps<'svg'>
+
+// Size comes from width/height attributes, not a class, so a caller-supplied
+// className can position the icon without wiping its dimensions.
+const BASE = {
+  width: 20,
+  height: 20,
+  viewBox: '0 0 20 20',
+  'aria-hidden': true,
+} as const
+
+function Line({ children, ...props }: IconProps) {
+  return (
+    <svg
+      {...BASE}
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={1.67}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      {...props}
+    >
+      {children}
+    </svg>
+  )
+}
+
+export const ArrowLeft = (props: IconProps) => (
+  <Line {...props}>
+    <path d="M15.8 10H4.2m0 0 4.6 4.6M4.2 10l4.6-4.6" />
+  </Line>
+)
+
+export const ArrowRight = (props: IconProps) => (
+  <Line {...props}>
+    <path d="M4.2 10h11.6m0 0-4.6-4.6m4.6 4.6-4.6 4.6" />
+  </Line>
+)
+
+export const ChevronDown = (props: IconProps) => (
+  <Line {...props}>
+    <path d="m5 7.5 5 5 5-5" />
+  </Line>
+)
+
+export const Check = (props: IconProps) => (
+  <Line {...props}>
+    <path d="m4.5 10.5 3.5 3.5 7.5-8" />
+  </Line>
+)
+
+export const Facebook = (props: IconProps) => (
+  <svg {...BASE} fill="currentColor" {...props}>
+    <path d="M10 1.7a8.3 8.3 0 0 0-1.3 16.5v-5.8H6.6V10h2.1V8.2c0-2.1 1.2-3.2 3.1-3.2.9 0 1.8.15 1.8.15v2h-1c-1 0-1.3.63-1.3 1.27V10h2.2l-.35 2.4h-1.85v5.8A8.3 8.3 0 0 0 10 1.7Z" />
+  </svg>
+)
+
+export const Instagram = (props: IconProps) => (
+  <svg {...BASE} fill="currentColor" {...props}>
+    <path d="M10 3.2c2.2 0 2.46 0 3.33.05.8.04 1.24.17 1.53.29.38.15.66.33.95.62.29.29.47.57.62.95.11.29.25.73.29 1.53.04.87.05 1.13.05 3.33s0 2.46-.05 3.33c-.04.8-.18 1.24-.29 1.53a2.5 2.5 0 0 1-.62.95c-.29.29-.57.47-.95.62-.29.11-.73.25-1.53.29-.87.04-1.13.05-3.33.05s-2.46 0-3.33-.05c-.8-.04-1.24-.18-1.53-.29a2.5 2.5 0 0 1-.95-.62 2.5 2.5 0 0 1-.62-.95c-.11-.29-.25-.73-.29-1.53C3.2 12.46 3.2 12.2 3.2 10s0-2.46.05-3.33c.04-.8.18-1.24.29-1.53.15-.38.33-.66.62-.95.29-.29.57-.47.95-.62.29-.12.73-.25 1.53-.29C7.54 3.2 7.8 3.2 10 3.2Zm0 3.3a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7Zm0 5.77a2.27 2.27 0 1 1 0-4.54 2.27 2.27 0 0 1 0 4.54Zm4.46-5.91a.82.82 0 1 1-1.63 0 .82.82 0 0 1 1.63 0Z" />
+  </svg>
+)

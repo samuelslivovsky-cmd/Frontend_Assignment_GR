@@ -1,28 +1,32 @@
 import Link from 'next/link'
 
 import { Button } from '@/components/form/inputs'
+import { ArrowLeft, ArrowRight } from '@/components/icons'
 
 type StepActionsProps = {
   backHref?: string
   submitLabel: string
+  withArrow?: boolean
   isSubmitting?: boolean
 }
 
-export function StepActions({ backHref, submitLabel, isSubmitting }: StepActionsProps) {
+export function StepActions({ backHref, submitLabel, withArrow, isSubmitting }: StepActionsProps) {
   return (
-    <div className="flex items-center justify-between gap-4 pt-4">
+    <div className="flex items-center justify-between gap-4 pt-2">
       {backHref ? (
         <Link
           href={backHref}
-          className="rounded-lg bg-gray-100 px-4 py-2 text-sm hover:bg-gray-200"
+          className="flex items-center gap-2 rounded-lg bg-gray-100 px-5 py-3 text-sm font-medium text-gray-900 hover:bg-gray-200"
         >
-          ← Späť
+          <ArrowLeft />
+          Späť
         </Link>
       ) : (
         <span />
       )}
-      <Button type="submit" disabled={isSubmitting}>
+      <Button type="submit" disabled={isSubmitting} className="flex items-center gap-2 px-5 py-3">
         {isSubmitting ? 'Odosielam…' : submitLabel}
+        {withArrow && !isSubmitting && <ArrowRight />}
       </Button>
     </div>
   )

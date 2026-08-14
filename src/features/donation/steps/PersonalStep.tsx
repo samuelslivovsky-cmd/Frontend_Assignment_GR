@@ -86,13 +86,15 @@ export function PersonalStep() {
         error={errors.phone?.message ?? errors.phonePrefix?.message}
       >
         <div className="flex gap-2">
-          <Select aria-label="Predvoľba krajiny" {...register('phonePrefix')}>
-            {PHONE_PREFIXES.map((prefix) => (
-              <option key={prefix} value={prefix}>
-                {PREFIX_LABELS[prefix]}
-              </option>
-            ))}
-          </Select>
+          <div className="w-36 shrink-0">
+            <Select aria-label="Predvoľba krajiny" {...register('phonePrefix')}>
+              {PHONE_PREFIXES.map((prefix) => (
+                <option key={prefix} value={prefix}>
+                  {PREFIX_LABELS[prefix]}
+                </option>
+              ))}
+            </Select>
+          </div>
           <TextInput
             id="phone"
             type="tel"

@@ -9,3 +9,20 @@
 body {
   font-family: var(--font-sans);
 }
+
+/* Tailwind v4 dropped the pointer cursor on buttons, so put it back once here
+   rather than repeating a utility class on every interactive element. */
+@layer base {
+  button:not(:disabled),
+  [role="button"]:not(:disabled),
+  select:not(:disabled),
+  summary,
+  label:has(input[type="radio"], input[type="checkbox"]) {
+    cursor: pointer;
+  }
+
+  button:disabled,
+  select:disabled {
+    cursor: not-allowed;
+  }
+}

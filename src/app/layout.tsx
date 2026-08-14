@@ -2,7 +2,6 @@ import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 
 import { Notifications } from '@/components/Notifications'
-import { Footer } from '@/components/layout/Footer'
 
 import './globals.css'
 import { Providers } from './providers'
@@ -26,7 +25,6 @@ export default function RootLayout({ children }: LayoutProps<'/'>) {
       <body className="flex min-h-full flex-col bg-white text-gray-900">
         <Providers>
           {children}
-          <Footer />
           <Notifications />
         </Providers>
       </body>
