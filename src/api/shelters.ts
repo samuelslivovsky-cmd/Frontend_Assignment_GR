@@ -57,12 +57,15 @@ const PLACEHOLDER_CONFIRMATION: { messages: ApiMessage[] } = {
   messages: [{ type: 'SUCCESS', message: 'Príspevok bol úspešne zaznamenaný' }],
 }
 
-/** Keeps loading and pending states visible while the API is stubbed out. */
+/**
+ * Keeps loading and pending states visible while the API is stubbed out —
+ * without it the skeletons would never render and could rot unnoticed.
+ */
 const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms))
 
 export async function getShelters(): Promise<Shelter[]> {
   if (USE_PLACEHOLDER_DATA) {
-    await delay(300)
+    await delay(1200)
     return PLACEHOLDER_SHELTERS
   }
 
@@ -73,7 +76,7 @@ export async function getShelters(): Promise<Shelter[]> {
 
 export async function getContributionResults(): Promise<ContributionResults> {
   if (USE_PLACEHOLDER_DATA) {
-    await delay(300)
+    await delay(1200)
     return PLACEHOLDER_RESULTS
   }
 

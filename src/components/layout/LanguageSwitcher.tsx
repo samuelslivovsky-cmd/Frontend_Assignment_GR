@@ -2,6 +2,7 @@
 
 import { useTranslation } from 'react-i18next'
 
+import { setLocale } from '@/i18n/client'
 import { LOCALES, LOCALE_LABELS, type Locale } from '@/i18n/config'
 
 export function LanguageSwitcher() {
@@ -22,7 +23,7 @@ export function LanguageSwitcher() {
             type="button"
             lang={locale}
             aria-pressed={isActive}
-            onClick={() => void i18n.changeLanguage(locale)}
+            onClick={() => setLocale(locale)}
             className={`rounded-md px-3 py-1.5 text-xs font-semibold uppercase transition-colors ${
               isActive ? 'bg-indigo-600 text-white' : 'text-gray-500 hover:bg-gray-50'
             }`}

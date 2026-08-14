@@ -45,6 +45,7 @@
 
 - [x] Farebná paleta, typografia a rozmery prevzaté z Figma podkladov
 - [x] Redizajn podľa grafického návrhu — všetky tri kroky formulára, Kontakt aj O projekte
+- [x] Prechody a animácie — Motion (framer-motion), rešpektuje „reduce motion“
 
 ---
 

@@ -1,11 +1,13 @@
 'use client'
 
 import { zodResolver } from '@hookform/resolvers/zod'
+import { motion } from 'motion/react'
 import { useRouter } from 'next/navigation'
 import { useMemo } from 'react'
 import { useForm, useWatch } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 
+import { Skeleton } from '@/components/Skeleton'
 import { Field } from '@/components/form/Field'
 import { Button, Select } from '@/components/form/inputs'
 
@@ -71,18 +73,26 @@ export function ShelterStep() {
           {DONATION_TARGETS.map((value) => (
             <label
               key={value}
-              className={`rounded-xl px-4 py-3 text-center text-sm font-medium transition-colors ${
-                target === value ? 'bg-indigo-600 text-white' : 'text-gray-700 hover:bg-gray-50'
+              className={`relative rounded-xl px-4 py-3 text-center text-sm font-medium transition-colors ${
+                target === value ? 'text-white' : 'text-gray-700'
               }`}
             >
               <input type="radio" value={value} className="sr-only" {...register('target')} />
-              {t(TARGET_KEYS[value])}
+              {/* One shared element that slides between the two halves. */}
+              {target === value && (
+                <motion.span
+                  layoutId="donation-target-pill"
+                  className="absolute inset-0 rounded-xl bg-indigo-600"
+                  transition={{ type: 'spring', stiffness: 420, damping: 34 }}
+                />
+              )}
+              <span className="relative">{t(TARGET_KEYS[value])}</span>
             </label>
           ))}
         </div>
       </fieldset>
 
-      <section className="flex flex-col gap-4">
+      <section className="flex flex-col gap-4" aria-busy={shelters.isPending}>
         <h2 className="text-sm font-semibold text-gray-900">{t('shelterStep.sectionHeading')}</h2>
 
         <Field
@@ -97,18 +107,18 @@ export function ShelterStep() {
           htmlFor="shelterId"
           error={errors.shelterId?.message}
         >
-          <Select id="shelterId" disabled={shelters.isPending} {...register('shelterId')}>
-            <option value="">
-              {shelters.isPending
-                ? t('shelterStep.shelterLoading')
-                : t('shelterStep.shelterPlaceholder')}
-            </option>
-            {shelters.data?.map((shelter) => (
-              <option key={shelter.id} value={shelter.id}>
-                {shelter.name}
-              </option>
-            ))}
-          </Select>
+          {shelters.isPending ? (
+            <Skeleton className="h-12 w-full" />
+          ) : (
+            <Select id="shelterId" {...register('shelterId')}>
+              <option value="">{t('shelterStep.shelterPlaceholder')}</option>
+              {shelters.data?.map((shelter) => (
+                <option key={shelter.id} value={shelter.id}>
+                  {shelter.name}
+                </option>
+              ))}
+            </Select>
+          )}
           {shelters.isError && (
             <p role="alert" className="text-sm text-red-700">
               {t('shelterStep.shelterError')}

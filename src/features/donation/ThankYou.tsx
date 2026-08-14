@@ -1,5 +1,6 @@
 'use client'
 
+import { motion } from 'motion/react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { useEffect } from 'react'
@@ -37,9 +38,14 @@ export function ThankYou() {
       {/* The dog matches what was actually donated, so a bigger gift gets a bigger grin. */}
       <div className="relative">
         <DonationDog amount={completed.amount} size="lg" />
-        <span className="absolute right-1 bottom-1 flex size-9 items-center justify-center rounded-full bg-indigo-600 text-white">
+        <motion.span
+          initial={{ scale: 0, rotate: -30 }}
+          animate={{ scale: 1, rotate: 0 }}
+          transition={{ type: 'spring', stiffness: 420, damping: 14, delay: 0.25 }}
+          className="absolute right-1 bottom-1 flex size-9 items-center justify-center rounded-full bg-indigo-600 text-white"
+        >
           <Check width={20} height={20} />
-        </span>
+        </motion.span>
       </div>
 
       <h1 className="text-5xl leading-[1.15] font-bold tracking-tight text-gray-900">

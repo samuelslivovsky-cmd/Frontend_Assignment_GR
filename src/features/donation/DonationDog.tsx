@@ -1,5 +1,7 @@
 'use client'
 
+import { motion } from 'motion/react'
+
 /**
  * Reacts to the donation amount: ears perk up and the smile opens. Purely
  * decorative feedback — the amount itself is already announced by the input,
@@ -8,13 +10,16 @@
 
 const LEVELS = [
   { ear: 0, eyes: 'sleepy', mouth: 'flat' },
-  { ear: 8, eyes: 'open', mouth: 'smile' },
-  { ear: 16, eyes: 'open', mouth: 'grin' },
-  { ear: 24, eyes: 'happy', mouth: 'grin' },
-  { ear: 32, eyes: 'happy', mouth: 'grin' },
+  { ear: 10, eyes: 'open', mouth: 'smile' },
+  { ear: 20, eyes: 'open', mouth: 'grin' },
+  { ear: 30, eyes: 'happy', mouth: 'grin' },
+  { ear: 40, eyes: 'happy', mouth: 'grin' },
 ] as const
 
 const THRESHOLDS = [1, 10, 30, 100]
+
+// Explicit classes rather than a merged className, so the two sizes can never collide.
+const SIZES = { md: 'size-24', lg: 'size-40' }
 
 function levelFor(amount: number): number {
   if (!Number.isFinite(amount) || amount <= 0) return 0
@@ -22,8 +27,16 @@ function levelFor(amount: number): number {
   return THRESHOLDS.filter((threshold) => amount >= threshold).length
 }
 
-// Explicit classes rather than a merged className, so the two sizes can never collide.
-const SIZES = { md: 'size-24', lg: 'size-40' }
+function Sparkle({ x, y, scale }: { x: number; y: number; scale: number }) {
+  return (
+    <path
+      transform={`translate(${x} ${y}) scale(${scale})`}
+      d="M0 -6c1 4 2 5 6 6c-4 1-5 2-6 6c-1-4-2-5-6-6c4-1 5-2 6-6Z"
+      fill="currentColor"
+      stroke="none"
+    />
+  )
+}
 
 type DonationDogProps = {
   amount: number
@@ -36,8 +49,10 @@ export function DonationDog({ amount, size = 'md' }: DonationDogProps) {
   const isTongueOut = index >= 3
   const isEcstatic = index === 4
 
+  const springy = { type: 'spring', stiffness: 320, damping: 14 } as const
+
   return (
-    <svg
+    <motion.svg
       viewBox="0 0 100 100"
       aria-hidden
       className={`${SIZES[size]} text-indigo-600`}
@@ -46,62 +61,77 @@ export function DonationDog({ amount, size = 'md' }: DonationDogProps) {
       strokeWidth={3}
       strokeLinecap="round"
       strokeLinejoin="round"
+      // Re-keyed on the level so crossing a threshold replays the little hop.
+      key={index}
+      initial={{ scale: 0.88 }}
+      animate={{ scale: 1 }}
+      transition={springy}
     >
-      <g className="origin-center transition-transform duration-300" style={{ transform: `rotate(${-ear}deg)` }}>
-        <path d="M33 32c-9 2-14 9-14 19 0 7 4 11 8 10 4-1 5-5 4-11-1-7 1-14 2-18Z" />
-      </g>
-      <g className="origin-center transition-transform duration-300" style={{ transform: `rotate(${ear}deg)` }}>
-        <path d="M67 32c9 2 14 9 14 19 0 7-4 11-8 10-4-1-5-5-4-11 1-7-1-14-2-18Z" />
-      </g>
+      {/* Ears are drawn first and pivot where they meet the head; the head is
+          filled so it hides the joint instead of showing crossing outlines.
+          Each ear rotates away from the head, so the signs are mirrored. */}
+      <motion.path
+        d="M30 38c-10 2-16 10-16 21 0 8 4 13 10 13 5 0 8-5 8-13 0-9 0-16-2-21Z"
+        style={{ transformOrigin: '30px 38px' }}
+        animate={{ rotate: ear }}
+        transition={springy}
+      />
+      <motion.path
+        d="M70 38c10 2 16 10 16 21 0 8-4 13-10 13-5 0-8-5-8-13 0-9 0-16 2-21Z"
+        style={{ transformOrigin: '70px 38px' }}
+        animate={{ rotate: -ear }}
+        transition={springy}
+      />
 
-      <path d="M50 26c-13 0-23 9-23 22s10 25 23 25 23-12 23-25-10-22-23-22Z" />
+      <ellipse cx="50" cy="52" rx="25" ry="24" fill="#fff" />
 
       {eyes === 'sleepy' && (
         <>
-          <path d="M38 48c2 2 4 2 6 0" />
-          <path d="M56 48c2 2 4 2 6 0" />
+          <path d="M37 47c2 3 5 3 7 0" />
+          <path d="M56 47c2 3 5 3 7 0" />
         </>
       )}
       {eyes === 'open' && (
         <>
-          <circle cx="41" cy="47" r="2.5" fill="currentColor" stroke="none" />
-          <circle cx="59" cy="47" r="2.5" fill="currentColor" stroke="none" />
+          <circle cx="41" cy="46" r="3" fill="currentColor" stroke="none" />
+          <circle cx="59" cy="46" r="3" fill="currentColor" stroke="none" />
         </>
       )}
       {eyes === 'happy' && (
         <>
-          <path d="M37 49c2-4 5-4 7 0" />
-          <path d="M56 49c2-4 5-4 7 0" />
+          <path d="M37 48c2-4 5-4 7 0" />
+          <path d="M56 48c2-4 5-4 7 0" />
         </>
       )}
 
-      <ellipse cx="50" cy="58" rx="4" ry="3" fill="currentColor" stroke="none" />
-      <path d="M50 61v3" />
+      <ellipse cx="50" cy="61" rx="12" ry="9" />
+      <ellipse cx="50" cy="56" rx="4" ry="3" fill="currentColor" stroke="none" />
+      <path d="M50 59v3" />
 
-      {mouth === 'flat' && <path d="M44 66h12" />}
+      {mouth === 'flat' && <path d="M45 64h10" />}
       {mouth === 'smile' && (
         <>
-          <path d="M43 64c2 4 5 4 7 0" />
-          <path d="M50 64c2 4 5 4 7 0" />
+          <path d="M44 63c1 3 4 3 6 0" />
+          <path d="M50 63c2 3 5 3 6 0" />
         </>
       )}
       {mouth === 'grin' && (
         <>
-          <path d="M41 64c3 6 6 6 9 0" />
-          <path d="M50 64c3 6 6 6 9 0" />
+          <path d="M42 63c2 5 6 5 8 0" />
+          <path d="M50 63c2 5 6 5 8 0" />
         </>
       )}
 
       {isTongueOut && (
-        <path d="M46 69h8v5a4 4 0 0 1-8 0Z" fill="currentColor" fillOpacity={0.25} />
+        <path d="M46 67h8v4a4 4 0 0 1-8 0Z" fill="currentColor" fillOpacity={0.25} />
       )}
 
       {isEcstatic && (
         <>
-          <path d="M15 24v8M11 28h8" />
-          <path d="M85 18v6M82 21h6" />
+          <Sparkle x={16} y={24} scale={1} />
+          <Sparkle x={86} y={20} scale={0.75} />
         </>
       )}
-    </svg>
+    </motion.svg>
   )
 }

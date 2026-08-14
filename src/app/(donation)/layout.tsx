@@ -1,6 +1,6 @@
-import Image from 'next/image'
 import type { ReactNode } from 'react'
 
+import { DogPhoto } from '@/components/DogPhoto'
 import { Footer } from '@/components/layout/Footer'
 import { Stepper } from '@/features/donation/Stepper'
 
@@ -17,17 +17,7 @@ export default function DonationLayout({ children }: { children: ReactNode }) {
         </div>
       </div>
 
-      {/* Decorative — the form carries all the meaning, so it stays out of the accessibility tree. */}
-      <div className="relative hidden w-[602px] shrink-0 lg:block">
-        <Image
-          src="/images/dog-form.png"
-          alt=""
-          fill
-          priority
-          sizes="602px"
-          className="rounded-2xl object-cover"
-        />
-      </div>
+      <DogPhoto />
     </div>
   )
 }

@@ -29,6 +29,7 @@ Projekt používa **pnpm**. API beží na verejnom endpointe bez autentifikácie
 | Formuláre | react-hook-form |
 | Validácia | Zod |
 | Preklady | i18next + react-i18next |
+| Animácie | Motion (framer-motion) |
 | Štýlovanie | Tailwind CSS v4 |
 
 ## Štruktúra

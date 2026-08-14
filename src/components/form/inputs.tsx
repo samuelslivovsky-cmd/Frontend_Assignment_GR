@@ -1,5 +1,6 @@
 'use client'
 
+import { motion } from 'motion/react'
 import type { ComponentProps } from 'react'
 
 import { ChevronDown } from '@/components/icons'
@@ -39,7 +40,11 @@ export function Select({ className, ...props }: ComponentProps<'select'>) {
   )
 }
 
-type ButtonProps = ComponentProps<'button'> & { variant?: 'primary' | 'secondary' }
+// Motion owns these handlers, so the native versions are dropped from the props.
+type ButtonProps = Omit<
+  ComponentProps<'button'>,
+  'onAnimationStart' | 'onAnimationEnd' | 'onDrag' | 'onDragStart' | 'onDragEnd'
+> & { variant?: 'primary' | 'secondary' }
 
 export function Button({ variant = 'primary', className, ...props }: ButtonProps) {
   const style =
@@ -48,7 +53,10 @@ export function Button({ variant = 'primary', className, ...props }: ButtonProps
       : 'bg-gray-100 text-gray-900 hover:bg-gray-200'
 
   return (
-    <button
+    <motion.button
+      whileHover={props.disabled ? undefined : { scale: 1.03 }}
+      whileTap={props.disabled ? undefined : { scale: 0.97 }}
+      transition={{ type: 'spring', stiffness: 500, damping: 30 }}
       {...props}
       className={`rounded-lg px-4 py-2 text-sm font-medium transition-colors disabled:opacity-60 ${style} ${className ?? ''}`}
     />

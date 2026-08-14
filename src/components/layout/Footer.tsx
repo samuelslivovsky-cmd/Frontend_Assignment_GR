@@ -1,5 +1,6 @@
 'use client'
 
+import { motion } from 'motion/react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useTranslation } from 'react-i18next'
@@ -23,9 +24,16 @@ export function Footer() {
 
   return (
     <footer className="flex flex-wrap items-center justify-between gap-6 border-t border-gray-200 py-6">
-      <Link href="/" aria-label={t('common.home')}>
-        <Image src="/images/logo.svg" alt="Good boy" width={124} height={32} priority />
-      </Link>
+      <motion.div
+        whileHover={{ rotate: -3, scale: 1.06 }}
+        whileTap={{ rotate: 0, scale: 0.97 }}
+        transition={{ type: 'spring', stiffness: 400, damping: 12 }}
+        className="origin-left"
+      >
+        <Link href="/" aria-label={t('common.home')} className="block">
+          <Image src="/images/logo.svg" alt="Good boy" width={124} height={32} priority />
+        </Link>
+      </motion.div>
 
       <div className="flex items-center gap-6">
         <div className="flex items-center gap-4 text-gray-500">

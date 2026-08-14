@@ -10,6 +10,29 @@ body {
   font-family: var(--font-sans);
 }
 
+/* Step transition runs on first paint, so the server-rendered markup (skeletons
+   included) is visible before any JavaScript has loaded. */
+@keyframes step-enter {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.step-enter {
+  animation: step-enter 0.28s ease-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .step-enter {
+    animation: none;
+  }
+}
+
 /* Tailwind v4 dropped the pointer cursor on buttons, so put it back once here
    rather than repeating a utility class on every interactive element. */
 @layer base {

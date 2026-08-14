@@ -22,7 +22,8 @@
     "home": "Good boy — home",
     "language": "Language",
     "dismissNotification": "Dismiss notification",
-    "unexpectedError": "Something went wrong."
+    "unexpectedError": "Something went wrong.",
+    "woof": "WOOF WOOF"
   },
   "nav": {
     "contact": "Contact",

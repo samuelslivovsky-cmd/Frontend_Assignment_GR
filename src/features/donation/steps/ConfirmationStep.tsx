@@ -7,6 +7,7 @@ import { useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 
 import { errorMessage } from '@/api/client'
+import { Skeleton } from '@/components/Skeleton'
 import { useNotificationStore } from '@/store/notifications'
 
 import { toContributionPayload } from '../payload'
@@ -55,7 +56,8 @@ export function ConfirmationStep() {
       },
       {
         label: t('confirmationStep.shelter'),
-        value: shelterName ?? t('confirmationStep.shelterNone'),
+        // The name arrives with the shelter list, so it can still be loading here.
+        value: shelters.isPending ? null : (shelterName ?? t('confirmationStep.shelterNone')),
       },
       { label: t('confirmationStep.amount'), value: eur.format(shelter.amount) },
     ],
@@ -89,7 +91,7 @@ export function ConfirmationStep() {
         {t('confirmationStep.heading')}
       </h1>
 
-      <section className="flex flex-col gap-5">
+      <section className="flex flex-col gap-5" aria-busy={shelters.isPending}>
         <h2 className="text-sm font-semibold text-gray-900">
           {t('confirmationStep.sectionHeading')}
         </h2>
@@ -100,9 +102,11 @@ export function ConfirmationStep() {
             className={`flex flex-col gap-4 ${index > 0 ? 'border-t border-gray-200 pt-6' : ''}`}
           >
             {rows.map(({ label, value }) => (
-              <div key={label} className="flex justify-between gap-6 text-sm">
+              <div key={label} className="flex items-center justify-between gap-6 text-sm">
                 <dt className="text-gray-600">{label}</dt>
-                <dd className="text-right font-semibold text-gray-900">{value}</dd>
+                <dd className="text-right font-semibold text-gray-900">
+                  {value ?? <Skeleton className="h-4 w-44" />}
+                </dd>
               </div>
             ))}
           </dl>
