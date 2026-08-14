@@ -1,22 +1,25 @@
 'use client'
 
+import { useTranslation } from 'react-i18next'
+
 import { useContributionResults } from './queries'
 
-const EUR = new Intl.NumberFormat('sk-SK', {
-  style: 'currency',
-  currency: 'EUR',
-  maximumFractionDigits: 0,
-})
-
 export function ContributionResults() {
+  const { t, i18n } = useTranslation()
   const { data, isPending, isError } = useContributionResults()
 
-  if (isPending) return <p className="text-sm text-gray-500">Načítavam prehľad…</p>
-  if (isError) return <p className="text-sm text-red-700">Prehľad príspevkov sa nepodarilo načítať.</p>
+  if (isPending) return <p className="text-sm text-gray-500">{t('results.loading')}</p>
+  if (isError) return <p className="text-sm text-red-700">{t('results.error')}</p>
+
+  const eur = new Intl.NumberFormat(i18n.language, {
+    style: 'currency',
+    currency: 'EUR',
+    maximumFractionDigits: 0,
+  })
 
   const stats = [
-    { value: EUR.format(data.contribution ?? 0), label: 'Celková vyzbieraná hodnota' },
-    { value: data.contributors.toLocaleString('sk-SK'), label: 'Počet darcov' },
+    { value: eur.format(data.contribution ?? 0), label: t('results.total') },
+    { value: data.contributors.toLocaleString(i18n.language), label: t('results.donors') },
   ]
 
   return (

@@ -1,0 +1,112 @@
+{
+  "meta": {
+    "siteName": "Nadácia Good Boy",
+    "siteDescription": "Podporte slovenské útulky pre psov.",
+    "shelterStepTitle": "Výber útulku",
+    "shelterStepDescription": "Vyberte si, komu chcete prispieť a akou sumou podporíte psíkov v útulkoch.",
+    "personalStepTitle": "Osobné údaje",
+    "personalStepDescription": "Zadajte svoje kontaktné údaje, aby sme vedeli, kto za príspevkom stojí.",
+    "confirmationStepTitle": "Potvrdenie",
+    "confirmationStepDescription": "Skontrolujte zadané údaje a odošlite svoj príspevok nadácii Good Boy.",
+    "contactTitle": "Kontakt",
+    "contactDescription": "Napíšte nám, zavolajte alebo sa zastavte v našej kancelárii v Žiline.",
+    "aboutTitle": "O projekte",
+    "aboutDescription": "Nadácia Good Boy zachraňuje opustené a týrané psy v Žiline. Pozrite si, koľko sa už podarilo vyzbierať."
+  },
+  "common": {
+    "back": "Späť",
+    "continue": "Pokračovať",
+    "skipToContent": "Preskočiť na obsah",
+    "home": "Good boy — domov",
+    "language": "Jazyk",
+    "dismissNotification": "Zavrieť oznámenie",
+    "unexpectedError": "Nastala neočakávaná chyba."
+  },
+  "nav": {
+    "contact": "Kontakt",
+    "about": "O projekte"
+  },
+  "steps": {
+    "progress": "Priebeh formulára",
+    "completed": "— vyplnené",
+    "shelter": "Výber útulku",
+    "personal": "Osobné údaje",
+    "confirmation": "Potvrdenie"
+  },
+  "shelterStep": {
+    "heading": "Vyberte si možnosť, ako chcete pomôcť",
+    "targetLegend": "Forma pomoci",
+    "targetShelter": "Prispieť konkrétnemu útulku",
+    "targetFoundation": "Prispieť celej nadácii",
+    "sectionHeading": "O projekte",
+    "shelterLabel": "Útulok",
+    "shelterOptional": "(Nepovinné)",
+    "shelterPlaceholder": "Vyberte útulok zo zoznamu",
+    "shelterLoading": "Načítavam útulky…",
+    "shelterError": "Zoznam útulkov sa nepodarilo načítať.",
+    "amountLabel": "Suma, ktorou chcem prispieť"
+  },
+  "personalStep": {
+    "heading": "Potrebujeme od Vás zopár informácií",
+    "sectionHeading": "O vás",
+    "firstName": "Meno",
+    "firstNamePlaceholder": "Zadajte Vaše meno",
+    "lastName": "Priezvisko",
+    "lastNamePlaceholder": "Zadajte Vaše priezvisko",
+    "email": "E-mailová adresa",
+    "emailPlaceholder": "Zadajte Váš e-mail",
+    "phone": "Telefónne číslo",
+    "phonePlaceholder": "123 321 123",
+    "countryPrefix": "Predvoľba krajiny",
+    "countrySK": "Slovensko",
+    "countryCZ": "Česko"
+  },
+  "confirmationStep": {
+    "heading": "Skontrolujte si zadané údaje",
+    "sectionHeading": "Zhrnutie",
+    "helpForm": "Forma pomoci",
+    "helpFormShelter": "Finančný príspevok konkrétnemu útulku",
+    "helpFormFoundation": "Finančný príspevok celej nadácii",
+    "shelter": "Útulok",
+    "shelterNone": "Nevybraný",
+    "amount": "Suma príspevku",
+    "fullName": "Meno a priezvisko",
+    "email": "E-mail",
+    "phone": "Telefónne číslo",
+    "consent": "Súhlasím so spracovaním mojich osobných údajov",
+    "submit": "Odoslať formulár",
+    "submitting": "Odosielam…"
+  },
+  "results": {
+    "loading": "Načítavam prehľad…",
+    "error": "Prehľad príspevkov sa nepodarilo načítať.",
+    "total": "Celková vyzbieraná hodnota",
+    "donors": "Počet darcov"
+  },
+  "contact": {
+    "heading": "Kontakt",
+    "emailTitle": "Email",
+    "emailNote": "Our friendly team is here to help.",
+    "officeTitle": "Office",
+    "officeNote": "Come say hello at our office HQ.",
+    "phoneTitle": "Phone",
+    "phoneNote": "Mon-Fri from 8am to 5pm."
+  },
+  "about": {
+    "heading": "O projekte",
+    "paragraph1": "Nadácia Good Boy sa venuje zlepšovaniu života psov v Žiline na Slovensku. Zachraňujeme opustené, týrané a bezdomovské psy, poskytujeme im lekársku starostlivosť, útočisko a lásku, ktorú si zaslúžia. Naším poslaním je dať týmto verným spoločníkom druhú šancu na život tým, že im nájdeme milujúci domov. Okrem záchrany a rehabilitácie sa zameriavame aj na podporu zodpovedného vlastníctva zvierat a ochrany zvierat prostredníctvom vzdelávacích a komunitných programov.",
+    "paragraph2": "Naša práca je možná vďaka podpore vášnivých dobrovoľníkov, štedrých darcov a komunity, ktorá sa hlboko stará o dobro zvierat. Organizujeme aj kastračné a sterilizačné iniciatívy, aby sme riešili problém túlavých psov a zabezpečili dlhodobý vplyv. V nadácii Good Boy veríme, že každý pes si zaslúži bezpečný, milujúci domov a šťastný život. Pridajte sa k nám a pomôžte nám robiť zmeny – či už dobrovoľníctvom, darovaním alebo adopciou chlpatého priateľa. Spoločne môžeme vytvoriť lepšiu budúcnosť pre psy v Žiline."
+  },
+  "validation": {
+    "minLength": "{{label}} musí mať aspoň {{count}} znaky.",
+    "maxLength": "{{label}} môže mať najviac {{count}} znakov.",
+    "labelFirstName": "Meno",
+    "labelLastName": "Priezvisko",
+    "amountRequired": "Zadajte výšku príspevku.",
+    "amountPositive": "Príspevok musí byť väčší ako 0 €.",
+    "shelterRequired": "Vyberte útulok, ktorému chcete prispieť.",
+    "emailInvalid": "Zadajte platnú e-mailovú adresu.",
+    "phoneInvalid": "Zadajte 9-miestne číslo bez predvoľby.",
+    "consentRequired": "Bez súhlasu so spracovaním osobných údajov nevieme príspevok prijať."
+  }
+}

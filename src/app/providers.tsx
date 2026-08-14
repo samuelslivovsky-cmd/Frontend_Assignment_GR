@@ -2,6 +2,9 @@
 
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { useState, type ReactNode } from 'react'
+import { I18nextProvider } from 'react-i18next'
+
+import i18n from '@/i18n/client'
 
 export function Providers({ children }: { children: ReactNode }) {
   // Created in state so each browser session gets its own cache, never a module-level singleton.
@@ -9,5 +12,9 @@ export function Providers({ children }: { children: ReactNode }) {
     () => new QueryClient({ defaultOptions: { queries: { staleTime: 60_000, retry: 1 } } }),
   )
 
-  return <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
+  return (
+    <I18nextProvider i18n={i18n}>
+      <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
+    </I18nextProvider>
+  )
 }

@@ -30,7 +30,7 @@
 ### Nice to have
 
 - [x] Validácia formulára pomocou Zod schémy
-- [ ] Lokalizačná knižnica na stringy
+- [x] Lokalizačná knižnica na stringy — i18next, slovenčina a angličtina, prepínač v pätičke
 - [ ] styled-components — zámerne nahradené Tailwind CSS
 - [x] Accessibility — chyby naviazané cez `aria-invalid` a `aria-describedby`, focus na prvé chybné pole, viditeľný focus ring, skip link, landmarky, `aria-pressed` na presetoch
 

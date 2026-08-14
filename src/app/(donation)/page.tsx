@@ -1,10 +1,12 @@
-import type { Metadata } from 'next'
+﻿import type { Metadata } from 'next'
+
+import { serverT } from '@/i18n/server'
 
 import { ShelterStep } from '@/features/donation/steps/ShelterStep'
 
 export const metadata: Metadata = {
-  title: 'Výber útulku',
-  description: 'Vyberte si, komu chcete prispieť a akou sumou podporíte psíkov v útulkoch.',
+  title: serverT('meta.shelterStepTitle'),
+  description: serverT('meta.shelterStepDescription'),
 }
 
 export default function ShelterStepPage() {

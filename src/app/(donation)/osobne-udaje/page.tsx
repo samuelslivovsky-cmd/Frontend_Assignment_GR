@@ -1,11 +1,12 @@
-import type { Metadata } from 'next'
+﻿import type { Metadata } from 'next'
 
 import { RequireDraft } from '@/features/donation/RequireDraft'
 import { PersonalStep } from '@/features/donation/steps/PersonalStep'
+import { serverT } from '@/i18n/server'
 
 export const metadata: Metadata = {
-  title: 'Osobné údaje',
-  description: 'Zadajte svoje kontaktné údaje, aby sme vedeli, kto za príspevkom stojí.',
+  title: serverT('meta.personalStepTitle'),
+  description: serverT('meta.personalStepDescription'),
 }
 
 export default function PersonalStepPage() {

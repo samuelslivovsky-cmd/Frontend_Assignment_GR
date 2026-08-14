@@ -1,11 +1,16 @@
+'use client'
+
 import Image from 'next/image'
 import Link from 'next/link'
+import { useTranslation } from 'react-i18next'
 
 import { Facebook, Instagram } from '@/components/icons'
 
+import { LanguageSwitcher } from './LanguageSwitcher'
+
 const LINKS = [
-  { href: '/kontakt', label: 'Kontakt' },
-  { href: '/o-projekte', label: 'O projekte' },
+  { href: '/kontakt', labelKey: 'nav.contact' },
+  { href: '/o-projekte', labelKey: 'nav.about' },
 ]
 
 const SOCIALS = [
@@ -14,9 +19,11 @@ const SOCIALS = [
 ]
 
 export function Footer() {
+  const { t } = useTranslation()
+
   return (
-    <footer className="flex items-center justify-between gap-6 border-t border-gray-200 py-6">
-      <Link href="/" aria-label="Good boy — domov">
+    <footer className="flex flex-wrap items-center justify-between gap-6 border-t border-gray-200 py-6">
+      <Link href="/" aria-label={t('common.home')}>
         <Image src="/images/logo.svg" alt="Good boy" width={124} height={32} priority />
       </Link>
 
@@ -29,12 +36,13 @@ export function Footer() {
           ))}
         </div>
         <nav className="flex gap-6 text-sm text-gray-700">
-          {LINKS.map(({ href, label }) => (
+          {LINKS.map(({ href, labelKey }) => (
             <Link key={href} href={href} className="hover:text-gray-900">
-              {label}
+              {t(labelKey)}
             </Link>
           ))}
         </nav>
+        <LanguageSwitcher />
       </div>
     </footer>
   )

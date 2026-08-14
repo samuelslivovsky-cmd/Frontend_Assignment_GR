@@ -28,6 +28,7 @@ Projekt používa **pnpm**. API beží na verejnom endpointe bez autentifikácie
 | Client state | zustand |
 | Formuláre | react-hook-form |
 | Validácia | Zod |
+| Preklady | i18next + react-i18next |
 | Štýlovanie | Tailwind CSS v4 |
 
 ## Štruktúra
@@ -46,6 +47,7 @@ src/
 │   └── providers.tsx        QueryClientProvider
 ├── components/              zdieľané UI — polia formulára, pätička, notifikácie
 ├── features/donation/       doména daru: schémy, store, kroky, dopyty
+├── i18n/                    preklady a inicializácia i18next
 └── store/                   globálne notifikácie
 ```
 
@@ -59,7 +61,13 @@ Kód je členený podľa domény, nie podľa typu súboru. Všetko, čo sa týka
 
 **Rozpracovaný dar drží zustand.** Store v [store.ts](src/features/donation/store.ts) prenáša už zvalidované hodnoty medzi krokmi. Žije len v pamäti, takže priamy vstup na neskorší krok komponent `RequireDraft` vráti na začiatok.
 
+**Stringy sú v i18next, vrátane validačných hlášok.** Slovníky sú v [locales](src/i18n/locales); jazyk sa prepína v pätičke a drží sa v `localStorage`. Zod schémy sú funkcie prijímajúce `t`, takže chybové hlášky sa prekladajú spolu so zvyškom rozhrania a nie sú zamrznuté z času načítania modulu.
+
 **Server state ide výhradne cez TanStack Query.** Hooky v [queries.ts](src/features/donation/queries.ts) používajú spoločnú query key factory; po úspešnom odoslaní sa invaliduje prehľad vyzbieranej sumy, takže čísla na stránke O projekte sú okamžite aktuálne.
+
+## Známe obmedzenie prekladov
+
+Aplikácia nemá lokalizované routy (`/sk`, `/en`), jazyk je klientský stav. Dôsledok: **`title` a `description` stránok ostávajú v slovenčine** aj po prepnutí na angličtinu, lebo metadata sa generujú na serveri, ktorý nemá z čoho jazyk odvodiť. Rovnako sa výber jazyka neodrazí v URL, takže sa nedá zdieľať ani indexovať. Ak by to malo byť plnohodnotné, ďalším krokom je segment `[locale]` a `generateMetadata`.
 
 ## Dve odchýlky od zadania
 

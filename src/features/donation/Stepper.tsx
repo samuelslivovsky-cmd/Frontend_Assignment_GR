@@ -1,16 +1,18 @@
 'use client'
 
 import { usePathname } from 'next/navigation'
+import { useTranslation } from 'react-i18next'
 
 import { Check } from '@/components/icons'
 
 import { DONATION_STEPS, stepIndex } from './steps'
 
 export function Stepper() {
+  const { t } = useTranslation()
   const current = stepIndex(usePathname())
 
   return (
-    <ol aria-label="Priebeh formulára" className="flex items-center gap-4 text-sm font-medium">
+    <ol aria-label={t('steps.progress')} className="flex items-center gap-4 text-sm font-medium">
       {DONATION_STEPS.map((step, index) => {
         const isDone = index < current
         const isActive = index === current
@@ -32,8 +34,8 @@ export function Stepper() {
               >
                 {isDone ? <Check className="size-4" /> : index + 1}
               </span>
-              {step.label}
-              {isDone && <span className="sr-only">— vyplnené</span>}
+              {t(step.labelKey)}
+              {isDone && <span className="sr-only">{t('steps.completed')}</span>}
             </span>
             {index < DONATION_STEPS.length - 1 && <span className="h-px flex-1 bg-gray-200" />}
           </li>

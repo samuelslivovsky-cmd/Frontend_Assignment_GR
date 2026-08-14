@@ -1,6 +1,7 @@
 'use client'
 
 import type { ComponentProps, ReactNode } from 'react'
+import { useTranslation } from 'react-i18next'
 
 import { FlagCZ, FlagSK } from '@/components/flags'
 import { ChevronDown } from '@/components/icons'
@@ -8,15 +9,15 @@ import type { PhonePrefix } from '@/features/donation/schema'
 
 import { TextInput } from './inputs'
 
+type FlagProps = ComponentProps<'svg'>
+
 // Typed against the schema's prefix union, so adding a prefix there without a
 // flag here is a compile error rather than a blank box at runtime.
-const PHONE_COUNTRIES: Record<PhonePrefix, { label: string; Flag: (props: FlagProps) => ReactNode }> =
+const PHONE_COUNTRIES: Record<PhonePrefix, { labelKey: string; Flag: (props: FlagProps) => ReactNode }> =
   {
-    '+421': { label: 'Slovensko', Flag: FlagSK },
-    '+420': { label: 'Česko', Flag: FlagCZ },
+    '+421': { labelKey: 'personalStep.countrySK', Flag: FlagSK },
+    '+420': { labelKey: 'personalStep.countryCZ', Flag: FlagCZ },
   }
-
-type FlagProps = ComponentProps<'svg'>
 
 type PhoneFieldProps = {
   prefix: PhonePrefix
@@ -27,6 +28,7 @@ type PhoneFieldProps = {
 // The native select stays in place for keyboard and screen-reader users but is
 // rendered invisible, so the flag and chevron below it can carry the design.
 export function PhoneField({ prefix, prefixProps, numberProps }: PhoneFieldProps) {
+  const { t } = useTranslation()
   const { Flag } = PHONE_COUNTRIES[prefix]
 
   return (
@@ -34,12 +36,12 @@ export function PhoneField({ prefix, prefixProps, numberProps }: PhoneFieldProps
       <div className="relative w-20 shrink-0">
         <select
           {...prefixProps}
-          aria-label="Predvoľba krajiny"
+          aria-label={t('personalStep.countryPrefix')}
           className="peer absolute inset-0 size-full opacity-0"
         >
-          {Object.entries(PHONE_COUNTRIES).map(([value, { label }]) => (
+          {Object.entries(PHONE_COUNTRIES).map(([value, { labelKey }]) => (
             <option key={value} value={value}>
-              {label} ({value})
+              {t(labelKey)} ({value})
             </option>
           ))}
         </select>

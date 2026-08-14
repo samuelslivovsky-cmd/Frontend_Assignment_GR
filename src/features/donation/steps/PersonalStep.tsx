@@ -2,14 +2,16 @@
 
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useRouter } from 'next/navigation'
+import { useMemo } from 'react'
 import { useForm, useWatch } from 'react-hook-form'
+import { useTranslation } from 'react-i18next'
 
 import { Field } from '@/components/form/Field'
 import { PhoneField } from '@/components/form/PhoneField'
 import { TextInput } from '@/components/form/inputs'
 
 import {
-  personalStepSchema,
+  createPersonalStepSchema,
   type PersonalStepInput,
   type PersonalStepValues,
 } from '../schema'
@@ -17,9 +19,12 @@ import { StepActions } from '../StepActions'
 import { useDonationStore } from '../store'
 
 export function PersonalStep() {
+  const { t } = useTranslation()
   const router = useRouter()
   const saved = useDonationStore((state) => state.personal)
   const setPersonal = useDonationStore((state) => state.setPersonal)
+
+  const schema = useMemo(() => createPersonalStepSchema(t), [t])
 
   const {
     register,
@@ -27,7 +32,7 @@ export function PersonalStep() {
     control,
     formState: { errors },
   } = useForm<PersonalStepInput, unknown, PersonalStepValues>({
-    resolver: zodResolver(personalStepSchema),
+    resolver: zodResolver(schema),
     defaultValues: saved ?? {
       firstName: '',
       lastName: '',
@@ -47,56 +52,68 @@ export function PersonalStep() {
   return (
     <form onSubmit={onSubmit} noValidate className="flex h-full flex-col gap-8">
       <h1 className="text-5xl leading-[1.15] font-bold tracking-tight text-gray-900">
-        Potrebujeme od Vás zopár informácií
+        {t('personalStep.heading')}
       </h1>
 
       <section className="flex flex-col gap-5">
-        <h2 className="text-sm font-semibold text-gray-900">O vás</h2>
+        <h2 className="text-sm font-semibold text-gray-900">{t('personalStep.sectionHeading')}</h2>
 
         <div className="grid gap-5 sm:grid-cols-2">
-          <Field label="Meno" htmlFor="firstName" error={errors.firstName?.message}>
+          <Field
+            label={t('personalStep.firstName')}
+            htmlFor="firstName"
+            error={errors.firstName?.message}
+          >
             <TextInput
               id="firstName"
               autoComplete="given-name"
-              placeholder="Zadajte Vaše meno"
+              placeholder={t('personalStep.firstNamePlaceholder')}
               {...register('firstName')}
             />
           </Field>
 
-          <Field label="Priezvisko" htmlFor="lastName" error={errors.lastName?.message}>
+          <Field
+            label={t('personalStep.lastName')}
+            htmlFor="lastName"
+            error={errors.lastName?.message}
+          >
             <TextInput
               id="lastName"
               autoComplete="family-name"
-              placeholder="Zadajte Vaše priezvisko"
+              placeholder={t('personalStep.lastNamePlaceholder')}
               {...register('lastName')}
             />
           </Field>
         </div>
 
-        <Field label="E-mailová adresa" htmlFor="email" error={errors.email?.message}>
+        <Field label={t('personalStep.email')} htmlFor="email" error={errors.email?.message}>
           <TextInput
             id="email"
             type="email"
             autoComplete="email"
-            placeholder="Zadajte Váš e-mail"
+            placeholder={t('personalStep.emailPlaceholder')}
             {...register('email')}
           />
         </Field>
 
         <Field
-          label="Telefónne číslo"
+          label={t('personalStep.phone')}
           htmlFor="phone"
           error={errors.phone?.message ?? errors.phonePrefix?.message}
         >
           <PhoneField
             prefix={phonePrefix}
             prefixProps={register('phonePrefix')}
-            numberProps={{ id: 'phone', placeholder: '123 321 123', ...register('phone') }}
+            numberProps={{
+              id: 'phone',
+              placeholder: t('personalStep.phonePlaceholder'),
+              ...register('phone'),
+            }}
           />
         </Field>
       </section>
 
-      <StepActions backHref="/" submitLabel="Pokračovať" withArrow />
+      <StepActions backHref="/" submitLabel={t('common.continue')} withArrow />
     </form>
   )
 }
