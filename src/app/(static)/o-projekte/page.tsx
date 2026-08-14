@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
-import Link from 'next/link'
 
+import { BackLink } from '@/components/layout/BackLink'
 import { ContributionResults } from '@/features/donation/ContributionResults'
 
 export const metadata: Metadata = {
@@ -16,16 +16,17 @@ const PARAGRAPHS = [
 
 export default function AboutPage() {
   return (
-    <main className="mx-auto flex w-full max-w-5xl flex-col gap-10 px-4 py-10">
-      <Link href="/" className="text-sm text-indigo-600 hover:underline">
-        ← Späť
-      </Link>
-      <h1 className="text-5xl font-bold tracking-tight">O projekte</h1>
+    <div className="flex flex-col gap-12">
+      <BackLink />
+      <h1 className="text-6xl leading-[1.15] font-bold tracking-tight text-gray-900">O projekte</h1>
+
       <p className="text-gray-700">{PARAGRAPHS[0]}</p>
-      <div className="border-y border-gray-200 py-10">
+
+      <div className="border-y border-gray-200 py-14">
         <ContributionResults />
       </div>
+
       <p className="text-gray-700">{PARAGRAPHS[1]}</p>
-    </main>
+    </div>
   )
 }

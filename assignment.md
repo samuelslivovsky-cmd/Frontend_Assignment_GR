@@ -11,7 +11,7 @@
 - [x] Priezvisko — povinné, 2–30 znakov
 - [x] E-mail — validácia formátu
 - [x] Telefón — SK/CZ číslo s predvoľbou +421 / +420
-- [ ] Vlajka štátu pri predvoľbe — zatiaľ textové označenie „SK +421“
+- [x] Vlajka štátu pri predvoľbe — kruhová ikona, SK z Figmy, CZ dokreslená
 - [x] Potvrdenie súhlasu so spracovaním osobných údajov
 - [x] Odoslanie zvalidovaného formulára so zrozumiteľným chybovým stavom
 - [x] Stránka Kontakt
@@ -44,7 +44,7 @@
 ### Vizuál
 
 - [x] Farebná paleta, typografia a rozmery prevzaté z Figma podkladov
-- [ ] Redizajn podľa grafického návrhu — dvojstĺpcový layout, fotografie, logo, ikony
+- [x] Redizajn podľa grafického návrhu — všetky tri kroky formulára, Kontakt aj O projekte
 
 ---
 

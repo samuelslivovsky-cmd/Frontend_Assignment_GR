@@ -51,6 +51,26 @@ export const Check = (props: IconProps) => (
   </Line>
 )
 
+export const Mail = (props: IconProps) => (
+  <Line {...props}>
+    <path d="M2.5 6.25 9.06 10.6a1.7 1.7 0 0 0 1.88 0L17.5 6.25" />
+    <rect x="2.5" y="4.17" width="15" height="11.67" rx="1.67" />
+  </Line>
+)
+
+export const MapPin = (props: IconProps) => (
+  <Line {...props}>
+    <path d="M10 18.33s5.83-4.16 5.83-9.16a5.83 5.83 0 1 0-11.66 0c0 5 5.83 9.16 5.83 9.16Z" />
+    <circle cx="10" cy="9.17" r="2.08" />
+  </Line>
+)
+
+export const Phone = (props: IconProps) => (
+  <Line {...props}>
+    <path d="M6.87 3.4a.83.83 0 0 1 1.1.3l1.4 2.28c.2.32.15.73-.11 1l-.98.97a.42.42 0 0 0-.08.5 9.6 9.6 0 0 0 3.35 3.35c.17.1.38.06.5-.08l.97-.98c.27-.26.68-.3 1-.11l2.28 1.4c.36.22.49.68.3 1.1l-.6 1.34a1.67 1.67 0 0 1-1.78.96A14.17 14.17 0 0 1 3.67 5.05a1.67 1.67 0 0 1 .96-1.78l1.34-.6Z" />
+  </Line>
+)
+
 export const Facebook = (props: IconProps) => (
   <svg {...BASE} fill="currentColor" {...props}>
     <path d="M10 1.7a8.3 8.3 0 0 0-1.3 16.5v-5.8H6.6V10h2.1V8.2c0-2.1 1.2-3.2 3.1-3.2.9 0 1.8.15 1.8.15v2h-1c-1 0-1.3.63-1.3 1.27V10h2.2l-.35 2.4h-1.85v5.8A8.3 8.3 0 0 0 10 1.7Z" />
