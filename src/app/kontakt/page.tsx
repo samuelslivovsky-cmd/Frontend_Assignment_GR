@@ -1,39 +1,50 @@
 import type { Metadata } from 'next'
+import Link from 'next/link'
 
 export const metadata: Metadata = {
   title: 'Kontakt',
-  description: 'Kontaktné údaje nadácie GoodBoy.',
+  description: 'Napíšte nám, zavolajte alebo sa zastavte v našej kancelárii v Žiline.',
 }
 
-// TODO: replace with the real contact details from the Figma design.
-const CONTACT_ROWS = [
-  { label: 'Nadácia', value: 'Nadácia GoodBoy' },
-  { label: 'Adresa', value: 'Framborská 58, 010 01 Žilina' },
-  { label: 'IČO', value: '00000000' },
-  { label: 'E-mail', value: 'podpora@goodboy.sk', href: 'mailto:podpora@goodboy.sk' },
-  { label: 'Telefón', value: '+421 900 000 000', href: 'tel:+421900000000' },
+const CONTACT_CARDS = [
+  {
+    title: 'Email',
+    note: 'Our friendly team is here to help.',
+    value: 'hello@goodrequest.com',
+    href: 'mailto:hello@goodrequest.com',
+  },
+  {
+    title: 'Office',
+    note: 'Come say hello at our office HQ.',
+    value: 'Obchodná 3D, 010 08 Žilina, Slovakia',
+    href: 'https://maps.google.com/?q=Obchodná+3D,+010+08+Žilina',
+  },
+  {
+    title: 'Phone',
+    note: 'Mon-Fri from 8am to 5pm.',
+    value: '+421 911 750 750',
+    href: 'tel:+421911750750',
+  },
 ]
 
 export default function ContactPage() {
   return (
-    <main className="mx-auto flex w-full max-w-2xl flex-col gap-6 p-4 py-10">
-      <h1 className="text-3xl font-semibold">Kontakt</h1>
-      <dl className="flex flex-col gap-3">
-        {CONTACT_ROWS.map(({ label, value, href }) => (
-          <div key={label} className="flex gap-4">
-            <dt className="w-28 shrink-0 text-slate-600">{label}</dt>
-            <dd>
-              {href ? (
-                <a href={href} className="underline underline-offset-4">
-                  {value}
-                </a>
-              ) : (
-                value
-              )}
-            </dd>
+    <main className="mx-auto flex w-full max-w-5xl flex-col gap-10 px-4 py-10">
+      <Link href="/" className="text-sm text-indigo-600 hover:underline">
+        ← Späť
+      </Link>
+      <h1 className="text-5xl font-bold tracking-tight">Kontakt</h1>
+      <div className="grid gap-8 sm:grid-cols-3">
+        {CONTACT_CARDS.map(({ title, note, value, href }) => (
+          <div key={title} className="flex flex-col items-center gap-2 text-center">
+            <h2 className="text-lg font-semibold">{title}</h2>
+            <p className="text-sm text-gray-600">{note}</p>
+            <a href={href} className="text-sm text-indigo-600 hover:underline">
+              {value}
+            </a>
           </div>
         ))}
-      </dl>
+      </div>
     </main>
   )
 }
