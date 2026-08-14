@@ -38,15 +38,29 @@ export function Footer() {
       <div className="flex items-center gap-6">
         <div className="flex items-center gap-4 text-gray-500">
           {SOCIALS.map(({ href, label, Icon }) => (
-            <a key={label} href={href} aria-label={label} className="hover:text-gray-900">
+            <motion.a
+              key={label}
+              href={href}
+              aria-label={label}
+              whileHover={{ y: -3, scale: 1.15 }}
+              whileTap={{ scale: 0.92 }}
+              transition={{ type: 'spring', stiffness: 500, damping: 15 }}
+              className="rounded transition-colors hover:text-indigo-600"
+            >
               <Icon />
-            </a>
+            </motion.a>
           ))}
         </div>
         <nav className="flex gap-6 text-sm text-gray-700">
           {LINKS.map(({ href, labelKey }) => (
-            <Link key={href} href={href} className="hover:text-gray-900">
+            <Link
+              key={href}
+              href={href}
+              className="group relative transition-colors hover:text-gray-900"
+            >
               {t(labelKey)}
+              {/* Underline grows from the left instead of just appearing. */}
+              <span className="absolute -bottom-1 left-0 h-0.5 w-full origin-left scale-x-0 rounded-full bg-indigo-600 transition-transform duration-200 ease-out group-hover:scale-x-100" />
             </Link>
           ))}
         </nav>

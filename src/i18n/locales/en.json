@@ -45,6 +45,7 @@
     "shelterLabel": "Shelter",
     "shelterOptional": "(Optional)",
     "shelterPlaceholder": "Pick a shelter from the list",
+    "shelterNone": "No specific shelter",
     "shelterLoading": "Loading shelters…",
     "shelterError": "The list of shelters could not be loaded.",
     "amountLabel": "Amount I want to donate"

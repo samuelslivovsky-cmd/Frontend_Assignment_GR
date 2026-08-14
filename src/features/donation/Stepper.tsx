@@ -1,6 +1,8 @@
 'use client'
 
+import Link from 'next/link'
 import { usePathname } from 'next/navigation'
+import type { ReactNode } from 'react'
 import { useTranslation } from 'react-i18next'
 
 import { Check } from '@/components/icons'
@@ -20,30 +22,52 @@ export function Stepper() {
         const isDone = index < current
         const isActive = index === current
 
+        const content = (
+          <>
+            <span
+              className={`flex size-8 items-center justify-center rounded-full border text-sm transition-colors ${
+                isActive
+                  ? 'border-indigo-600 bg-indigo-600 text-white'
+                  : isDone
+                    ? 'border-indigo-600 text-indigo-600'
+                    : 'border-gray-200 text-gray-400'
+              }`}
+            >
+              {isDone ? <Check className="size-4" /> : index + 1}
+            </span>
+            {t(step.labelKey)}
+            {isDone && <span className="sr-only">{t('steps.completed')}</span>}
+          </>
+        )
+
         return (
           <li key={step.href} className="flex flex-1 items-center gap-4 last:flex-none">
-            <span
-              aria-current={isActive ? 'step' : undefined}
-              className={`flex shrink-0 items-center gap-3 ${isActive || isDone ? 'text-gray-900' : 'text-gray-400'}`}
-            >
-              <span
-                className={`flex size-8 items-center justify-center rounded-full border text-sm ${
-                  isActive
-                    ? 'border-indigo-600 bg-indigo-600 text-white'
-                    : isDone
-                      ? 'border-indigo-600 text-indigo-600'
-                      : 'border-gray-200 text-gray-400'
-                }`}
+            {/* Only finished steps are reachable — jumping ahead would skip validation. */}
+            {isDone ? (
+              <Link
+                href={step.href}
+                className="flex shrink-0 items-center gap-3 rounded-lg text-gray-900 hover:text-indigo-700"
               >
-                {isDone ? <Check className="size-4" /> : index + 1}
-              </span>
-              {t(step.labelKey)}
-              {isDone && <span className="sr-only">{t('steps.completed')}</span>}
-            </span>
+                {content}
+              </Link>
+            ) : (
+              <Step isActive={isActive}>{content}</Step>
+            )}
             {index < DONATION_STEPS.length - 1 && <span className="h-px flex-1 bg-gray-200" />}
           </li>
         )
       })}
     </ol>
+  )
+}
+
+function Step({ isActive, children }: { isActive: boolean; children: ReactNode }) {
+  return (
+    <span
+      aria-current={isActive ? 'step' : undefined}
+      className={`flex shrink-0 items-center gap-3 ${isActive ? 'text-gray-900' : 'text-gray-400'}`}
+    >
+      {children}
+    </span>
   )
 }

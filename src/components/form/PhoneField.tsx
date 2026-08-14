@@ -4,9 +4,9 @@ import type { ComponentProps, ReactNode } from 'react'
 import { useTranslation } from 'react-i18next'
 
 import { FlagCZ, FlagSK } from '@/components/flags'
-import { ChevronDown } from '@/components/icons'
 import type { PhonePrefix } from '@/features/donation/schema'
 
+import { SelectField } from './SelectField'
 import { TextInput } from './inputs'
 
 type FlagProps = ComponentProps<'svg'>
@@ -21,34 +21,31 @@ const PHONE_COUNTRIES: Record<PhonePrefix, { labelKey: string; Flag: (props: Fla
 
 type PhoneFieldProps = {
   prefix: PhonePrefix
-  prefixProps: ComponentProps<'select'>
+  onPrefixChange: (prefix: PhonePrefix) => void
+  onPrefixBlur?: () => void
   numberProps: ComponentProps<'input'>
 }
 
-// The native select stays in place for keyboard and screen-reader users but is
-// rendered invisible, so the flag and chevron below it can carry the design.
-export function PhoneField({ prefix, prefixProps, numberProps }: PhoneFieldProps) {
+export function PhoneField({ prefix, onPrefixChange, onPrefixBlur, numberProps }: PhoneFieldProps) {
   const { t } = useTranslation()
-  const { Flag } = PHONE_COUNTRIES[prefix]
+
+  const options = Object.entries(PHONE_COUNTRIES).map(([value, { labelKey, Flag }]) => ({
+    value,
+    label: `${t(labelKey)} (${value})`,
+    icon: <Flag />,
+  }))
 
   return (
     <div className="flex gap-3">
-      <div className="relative w-20 shrink-0">
-        <select
-          {...prefixProps}
+      <div className="w-20 shrink-0">
+        <SelectField
+          variant="compact"
           aria-label={t('personalStep.countryPrefix')}
-          className="peer absolute inset-0 size-full opacity-0"
-        >
-          {Object.entries(PHONE_COUNTRIES).map(([value, { labelKey }]) => (
-            <option key={value} value={value}>
-              {t(labelKey)} ({value})
-            </option>
-          ))}
-        </select>
-        <div className="pointer-events-none flex h-full items-center justify-center gap-1 rounded-lg bg-gray-100 peer-focus-visible:outline-2 peer-focus-visible:outline-indigo-600">
-          <Flag />
-          <ChevronDown className="text-gray-500" />
-        </div>
+          value={prefix}
+          onChange={(value) => onPrefixChange(value as PhonePrefix)}
+          onBlur={onPrefixBlur}
+          options={options}
+        />
       </div>
 
       <div className="relative flex-1">

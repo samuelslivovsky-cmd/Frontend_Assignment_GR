@@ -4,12 +4,13 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { motion } from 'motion/react'
 import { useRouter } from 'next/navigation'
 import { useMemo } from 'react'
-import { useForm, useWatch } from 'react-hook-form'
+import { Controller, useForm, useWatch } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 
 import { Skeleton } from '@/components/Skeleton'
 import { Field } from '@/components/form/Field'
-import { Button, Select } from '@/components/form/inputs'
+import { SelectField } from '@/components/form/SelectField'
+import { Button } from '@/components/form/inputs'
 
 import { DonationDog } from '../DonationDog'
 import { useShelters } from '../queries'
@@ -110,14 +111,29 @@ export function ShelterStep() {
           {shelters.isPending ? (
             <Skeleton className="h-12 w-full" />
           ) : (
-            <Select id="shelterId" {...register('shelterId')}>
-              <option value="">{t('shelterStep.shelterPlaceholder')}</option>
-              {shelters.data?.map((shelter) => (
-                <option key={shelter.id} value={shelter.id}>
-                  {shelter.name}
-                </option>
-              ))}
-            </Select>
+            <Controller
+              name="shelterId"
+              control={control}
+              render={({ field }) => (
+                <SelectField
+                  id="shelterId"
+                  value={field.value}
+                  onChange={field.onChange}
+                  onBlur={field.onBlur}
+                  placeholder={t('shelterStep.shelterPlaceholder')}
+                  options={[
+                    // Clearing the choice only makes sense when donating to the foundation.
+                    ...(target === 'FOUNDATION'
+                      ? [{ value: '', label: t('shelterStep.shelterNone') }]
+                      : []),
+                    ...(shelters.data ?? []).map((shelter) => ({
+                      value: String(shelter.id),
+                      label: shelter.name,
+                    })),
+                  ]}
+                />
+              )}
+            />
           )}
           {shelters.isError && (
             <p role="alert" className="text-sm text-red-700">

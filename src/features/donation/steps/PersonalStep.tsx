@@ -3,7 +3,7 @@
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useRouter } from 'next/navigation'
 import { useMemo } from 'react'
-import { useForm, useWatch } from 'react-hook-form'
+import { Controller, useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 
 import { Field } from '@/components/form/Field'
@@ -41,8 +41,6 @@ export function PersonalStep() {
       phone: '',
     },
   })
-
-  const phonePrefix = useWatch({ control, name: 'phonePrefix' })
 
   const onSubmit = handleSubmit((values) => {
     setPersonal(values)
@@ -101,14 +99,21 @@ export function PersonalStep() {
           htmlFor="phone"
           error={errors.phone?.message ?? errors.phonePrefix?.message}
         >
-          <PhoneField
-            prefix={phonePrefix}
-            prefixProps={register('phonePrefix')}
-            numberProps={{
-              id: 'phone',
-              placeholder: t('personalStep.phonePlaceholder'),
-              ...register('phone'),
-            }}
+          <Controller
+            name="phonePrefix"
+            control={control}
+            render={({ field }) => (
+              <PhoneField
+                prefix={field.value}
+                onPrefixChange={field.onChange}
+                onPrefixBlur={field.onBlur}
+                numberProps={{
+                  id: 'phone',
+                  placeholder: t('personalStep.phonePlaceholder'),
+                  ...register('phone'),
+                }}
+              />
+            )}
           />
         </Field>
       </section>
