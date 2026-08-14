@@ -56,13 +56,15 @@ Personal data:
 
 | Field | Required | Rule |
 | --- | --- | --- |
-| First name | no | 2–20 chars |
+| First name | yes | 2–20 chars — the brief calls it optional, but the API 400s on an empty `firstName` |
 | Last name | yes | 2–30 chars |
 | E-mail | yes | valid e-mail |
 | Phone | yes | SK/CZ number, `+421` / `+420` prefix with the country flag shown |
 | GDPR consent | yes | must be checked |
 
 Submit errors must be shown to the user in plain language, never swallowed.
+
+**React Compiler is off** (`next.config.ts`). It memoizes `useForm()`'s returned functions, which silently drops `setValue`/`reset` writes to uncontrolled inputs. Do not re-enable it while react-hook-form drives the form.
 
 ## API
 

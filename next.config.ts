@@ -1,8 +1,9 @@
-import type { NextConfig } from "next";
+import type { NextConfig } from 'next'
 
 const nextConfig: NextConfig = {
-  /* config options here */
-  reactCompiler: true,
-};
+  // react-hook-form is not React Compiler compatible: the compiler memoizes `useForm()`'s
+  // returned functions, which silently drops `setValue`/`reset` writes to uncontrolled inputs.
+  reactCompiler: false,
+}
 
-export default nextConfig;
+export default nextConfig
