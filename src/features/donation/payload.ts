@@ -1,19 +1,24 @@
 import type { ContributionPayload } from '@/lib/api/shelters'
 
-import type { DonationFormValues } from './schema'
+import type { PersonalStepValues, ShelterStepValues } from './schema'
+
+type DonationDraft = {
+  shelter: ShelterStepValues
+  personal: PersonalStepValues
+}
 
 // `contributors` is an array on the API, so multi-donor support later needs no payload change.
-export function toContributionPayload(values: DonationFormValues): ContributionPayload {
+export function toContributionPayload({ shelter, personal }: DonationDraft): ContributionPayload {
   return {
     contributors: [
       {
-        firstName: values.firstName,
-        lastName: values.lastName,
-        email: values.email,
-        phone: `${values.phonePrefix}${values.phone}`,
+        firstName: personal.firstName,
+        lastName: personal.lastName,
+        email: personal.email,
+        phone: `${personal.phonePrefix}${personal.phone}`,
       },
     ],
-    shelterID: values.target === 'SHELTER' ? values.shelterId : null,
-    value: values.amount,
+    shelterID: shelter.target === 'SHELTER' ? shelter.shelterId : null,
+    value: shelter.amount,
   }
 }
