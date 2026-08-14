@@ -23,7 +23,11 @@
     "language": "Language",
     "dismissNotification": "Dismiss notification",
     "unexpectedError": "Something went wrong.",
-    "woof": "WOOF WOOF"
+    "woof": "WOOF WOOF",
+    "required": "required",
+    "optional": "optional",
+    "requiredField": "Required field",
+    "optionalField": "Optional field"
   },
   "nav": {
     "contact": "Contact",
@@ -43,10 +47,8 @@
     "targetFoundation": "Donate to the whole foundation",
     "sectionHeading": "About the project",
     "shelterLabel": "Shelter",
-    "shelterOptional": "(Optional)",
     "shelterPlaceholder": "Pick a shelter from the list",
     "shelterNone": "No specific shelter",
-    "shelterLoading": "Loading shelters…",
     "shelterError": "The list of shelters could not be loaded.",
     "amountLabel": "Amount I want to donate"
   },

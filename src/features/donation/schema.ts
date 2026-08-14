@@ -33,10 +33,30 @@ const amount = (t: TFunction) =>
 // The select holds an empty string for "no shelter picked".
 const shelterId = z.string().transform((value) => (value === '' ? null : Number(value)))
 
+/**
+ * Browsers autofill phone numbers in whatever shape they stored them —
+ * `0948 524 551`, `+421948524551`, `00421 948 524 551`. Reduce all of those to
+ * the nine national digits, but only when the strip actually yields nine, so a
+ * number that merely happens to start with 421 is left alone.
+ */
+export function normalisePhone(value: string): string {
+  const digits = value.replace(/\D/g, '')
+  const candidates = [digits.replace(/^(?:00)?42[01]/, ''), digits.replace(/^0/, ''), digits]
+
+  return candidates.find((candidate) => candidate.length === 9) ?? digits
+}
+
+/** The country code an autofilled value carried, if any. */
+export function detectPhonePrefix(value: string): PhonePrefix | undefined {
+  const match = value.replace(/\D/g, '').match(/^(?:00)?(42[01])/)
+
+  return match ? (`+${match[1]}` as PhonePrefix) : undefined
+}
+
 const phone = (t: TFunction) =>
   z
     .string()
-    .transform((value) => value.replace(/\s/g, ''))
+    .transform(normalisePhone)
     .refine((value) => /^\d{9}$/.test(value), t('validation.phoneInvalid'))
 
 export const createShelterStepSchema = (t: TFunction) =>

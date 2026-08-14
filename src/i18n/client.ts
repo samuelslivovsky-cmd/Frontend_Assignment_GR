@@ -16,6 +16,10 @@ if (!i18next.isInitialized) {
     fallbackLng: DEFAULT_LOCALE,
     supportedLngs: LOCALES,
     interpolation: { escapeValue: false },
+    // Resources are bundled, so finish setup synchronously. Without this the first
+    // render can happen before init resolves and every t() returns its raw key,
+    // which shows up as a hydration mismatch.
+    initAsync: false,
   })
 }
 

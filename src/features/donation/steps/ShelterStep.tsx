@@ -9,6 +9,7 @@ import { useTranslation } from 'react-i18next'
 
 import { Skeleton } from '@/components/Skeleton'
 import { Field } from '@/components/form/Field'
+import { FieldMark } from '@/components/form/FieldMark'
 import { SelectField } from '@/components/form/SelectField'
 import { Button } from '@/components/form/inputs'
 
@@ -97,14 +98,8 @@ export function ShelterStep() {
         <h2 className="text-sm font-semibold text-gray-900">{t('shelterStep.sectionHeading')}</h2>
 
         <Field
-          label={
-            <>
-              {t('shelterStep.shelterLabel')}{' '}
-              {target === 'FOUNDATION' && (
-                <span className="font-normal text-gray-400">{t('shelterStep.shelterOptional')}</span>
-              )}
-            </>
-          }
+          label={t('shelterStep.shelterLabel')}
+          required={target === 'SHELTER'}
           htmlFor="shelterId"
           error={errors.shelterId?.message}
         >
@@ -146,6 +141,7 @@ export function ShelterStep() {
       <section className="flex flex-col gap-6">
         <label htmlFor="amount" className="text-sm font-semibold text-gray-900">
           {t('shelterStep.amountLabel')}
+          <FieldMark required />
         </label>
 
         <div className="relative flex items-center justify-center">

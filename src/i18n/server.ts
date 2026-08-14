@@ -10,6 +10,7 @@ void instance.init({
   lng: DEFAULT_LOCALE,
   fallbackLng: DEFAULT_LOCALE,
   interpolation: { escapeValue: false },
+  initAsync: false,
 })
 
 export const serverT: TFunction = instance.t

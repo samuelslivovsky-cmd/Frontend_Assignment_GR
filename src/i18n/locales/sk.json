@@ -23,7 +23,11 @@
     "language": "Jazyk",
     "dismissNotification": "Zavrieť oznámenie",
     "unexpectedError": "Nastala neočakávaná chyba.",
-    "woof": "HAU HAU"
+    "woof": "HAU HAU",
+    "required": "povinné",
+    "optional": "nepovinné",
+    "requiredField": "Povinné pole",
+    "optionalField": "Nepovinné pole"
   },
   "nav": {
     "contact": "Kontakt",
@@ -43,10 +47,8 @@
     "targetFoundation": "Prispieť celej nadácii",
     "sectionHeading": "O projekte",
     "shelterLabel": "Útulok",
-    "shelterOptional": "(Nepovinné)",
     "shelterPlaceholder": "Vyberte útulok zo zoznamu",
     "shelterNone": "Bez konkrétneho útulku",
-    "shelterLoading": "Načítavam útulky…",
     "shelterError": "Zoznam útulkov sa nepodarilo načítať.",
     "amountLabel": "Suma, ktorou chcem prispieť"
   },

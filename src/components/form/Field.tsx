@@ -2,6 +2,8 @@
 
 import { createContext, useContext, useId, type ReactNode } from 'react'
 
+import { FieldMark } from './FieldMark'
+
 type FieldAria = {
   describedBy?: string
   invalid: boolean
@@ -14,13 +16,14 @@ export const useFieldAria = () => useContext(FieldContext)
 
 type FieldProps = {
   label: ReactNode
+  required: boolean
   htmlFor?: string
   error?: string
   hint?: string
   children: ReactNode
 }
 
-export function Field({ label, htmlFor, error, hint, children }: FieldProps) {
+export function Field({ label, required, htmlFor, error, hint, children }: FieldProps) {
   const generatedId = useId()
   const id = htmlFor ?? generatedId
   const errorId = `${id}-error`
@@ -33,6 +36,7 @@ export function Field({ label, htmlFor, error, hint, children }: FieldProps) {
       <div className="flex flex-col gap-2">
         <label htmlFor={id} className="text-sm font-semibold text-gray-900">
           {label}
+          <FieldMark required={required} />
         </label>
         {children}
         {hint && !error && (

@@ -22,7 +22,9 @@ export function Checkbox({ children, ...props }: ComponentProps<'input'> & { chi
           <Check width={12} height={12} className="text-indigo-600 opacity-0 transition-opacity" />
         </span>
       </span>
-      {children}
+      {/* One inline item, so a FieldMark inside keeps its raised alignment
+          instead of becoming a flex sibling of the text. */}
+      <span>{children}</span>
     </label>
   )
 }

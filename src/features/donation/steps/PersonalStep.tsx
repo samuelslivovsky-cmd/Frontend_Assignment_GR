@@ -12,6 +12,8 @@ import { TextInput } from '@/components/form/inputs'
 
 import {
   createPersonalStepSchema,
+  detectPhonePrefix,
+  normalisePhone,
   type PersonalStepInput,
   type PersonalStepValues,
 } from '../schema'
@@ -29,6 +31,7 @@ export function PersonalStep() {
   const {
     register,
     handleSubmit,
+    setValue,
     control,
     formState: { errors },
   } = useForm<PersonalStepInput, unknown, PersonalStepValues>({
@@ -41,6 +44,16 @@ export function PersonalStep() {
       phone: '',
     },
   })
+
+  const phoneField = register('phone')
+
+  // Autofill drops in whatever shape the browser stored; rewrite it once the
+  // field is left so the user sees exactly what will be submitted.
+  const tidyPhone = (raw: string) => {
+    const prefix = detectPhonePrefix(raw)
+    if (prefix) setValue('phonePrefix', prefix)
+    setValue('phone', normalisePhone(raw))
+  }
 
   const onSubmit = handleSubmit((values) => {
     setPersonal(values)
@@ -59,6 +72,7 @@ export function PersonalStep() {
         <div className="grid gap-5 sm:grid-cols-2">
           <Field
             label={t('personalStep.firstName')}
+            required
             htmlFor="firstName"
             error={errors.firstName?.message}
           >
@@ -72,6 +86,7 @@ export function PersonalStep() {
 
           <Field
             label={t('personalStep.lastName')}
+            required
             htmlFor="lastName"
             error={errors.lastName?.message}
           >
@@ -84,7 +99,7 @@ export function PersonalStep() {
           </Field>
         </div>
 
-        <Field label={t('personalStep.email')} htmlFor="email" error={errors.email?.message}>
+        <Field label={t('personalStep.email')} required htmlFor="email" error={errors.email?.message}>
           <TextInput
             id="email"
             type="email"
@@ -96,6 +111,7 @@ export function PersonalStep() {
 
         <Field
           label={t('personalStep.phone')}
+          required
           htmlFor="phone"
           error={errors.phone?.message ?? errors.phonePrefix?.message}
         >
@@ -110,7 +126,11 @@ export function PersonalStep() {
                 numberProps={{
                   id: 'phone',
                   placeholder: t('personalStep.phonePlaceholder'),
-                  ...register('phone'),
+                  ...phoneField,
+                  onBlur: (event) => {
+                    tidyPhone(event.target.value)
+                    return phoneField.onBlur(event)
+                  },
                 }}
               />
             )}

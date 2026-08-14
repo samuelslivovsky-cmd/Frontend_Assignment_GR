@@ -9,6 +9,7 @@ import { useTranslation } from 'react-i18next'
 import { errorMessage } from '@/api/client'
 import { Skeleton } from '@/components/Skeleton'
 import { Checkbox } from '@/components/form/Checkbox'
+import { FieldMark } from '@/components/form/FieldMark'
 import { useNotificationStore } from '@/store/notifications'
 
 import { toContributionPayload } from '../payload'
@@ -115,7 +116,10 @@ export function ConfirmationStep() {
       </section>
 
       <div className="flex flex-col gap-2 border-t border-gray-200 pt-6">
-        <Checkbox {...register('consent')}>{t('confirmationStep.consent')}</Checkbox>
+        <Checkbox {...register('consent')}>
+          {t('confirmationStep.consent')}
+          <FieldMark required />
+        </Checkbox>
         {errors.consent && (
           <p role="alert" className="text-sm text-red-700">
             {errors.consent.message}
