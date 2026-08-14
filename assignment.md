@@ -37,7 +37,7 @@
 ### Ak ostane čas
 
 - [x] SEO — vlastný title a description pre každý krok formulára
-- [ ] SEO — og:image
+- [x] SEO — og:image generovaný pre každú routu cez `next/og`, plus favicon
 - [ ] Responzívne zobrazenie
 - [ ] Viacero darcov
 

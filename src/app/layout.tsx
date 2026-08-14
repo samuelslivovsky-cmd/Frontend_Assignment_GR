@@ -14,11 +14,21 @@ const inter = Inter({
 })
 
 export const metadata: Metadata = {
+  // Without a base, Next cannot turn the generated og:image into an absolute URL.
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? 'http://localhost:3000'),
   title: {
     default: serverT('meta.siteName'),
     template: `%s | ${serverT('meta.siteName')}`,
   },
   description: serverT('meta.siteDescription'),
+  openGraph: {
+    type: 'website',
+    siteName: serverT('meta.siteName'),
+    locale: 'sk_SK',
+  },
+  twitter: {
+    card: 'summary_large_image',
+  },
 }
 
 export default function RootLayout({ children }: LayoutProps<'/'>) {

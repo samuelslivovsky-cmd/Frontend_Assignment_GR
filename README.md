@@ -64,6 +64,8 @@ Kód je členený podľa domény, nie podľa typu súboru. Všetko, čo sa týka
 
 **Stringy sú v i18next, vrátane validačných hlášok.** Slovníky sú v [locales](src/i18n/locales); jazyk sa prepína v pätičke a drží sa v `localStorage`. Zod schémy sú funkcie prijímajúce `t`, takže chybové hlášky sa prekladajú spolu so zvyškom rozhrania a nie sú zamrznuté z času načítania modulu.
 
+**Sociálne náhľady sa generujú za behu buildu.** [og/card.tsx](src/og/card.tsx) je jedna šablóna, ktorú si každá routa naplní vlastným nadpisom cez `next/og`. Kresba je vektorová zámerne — Satori bitmapovú fotku ticho zahodí a výsledný obrázok má vďaka tomu pár kilobajtov namiesto stoviek.
+
 **Server state ide výhradne cez TanStack Query.** Hooky v [queries.ts](src/features/donation/queries.ts) používajú spoločnú query key factory; po úspešnom odoslaní sa invaliduje prehľad vyzbieranej sumy, takže čísla na stránke O projekte sú okamžite aktuálne.
 
 ## Známe obmedzenie prekladov
