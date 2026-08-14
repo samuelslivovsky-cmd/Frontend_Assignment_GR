@@ -110,7 +110,9 @@ export function ShelterStep() {
       </section>
 
       <section className="flex flex-col gap-6">
-        <h2 className="text-sm font-semibold text-gray-900">Suma, ktorou chcem prispieť</h2>
+        <label htmlFor="amount" className="text-sm font-semibold text-gray-900">
+          Suma, ktorou chcem prispieť
+        </label>
 
         <div className="flex justify-center">
           <span className="inline-flex items-baseline gap-1 border-b-2 border-indigo-600 pb-2">
@@ -118,7 +120,8 @@ export function ShelterStep() {
               id="amount"
               inputMode="decimal"
               placeholder="0"
-              aria-label="Výška príspevku v eurách"
+              aria-invalid={errors.amount ? true : undefined}
+              aria-describedby={errors.amount ? 'amount-error' : undefined}
               className="w-28 bg-transparent text-center text-6xl font-normal text-gray-900 outline-none placeholder:text-gray-300"
               {...register('amount')}
             />
@@ -127,7 +130,7 @@ export function ShelterStep() {
         </div>
 
         {errors.amount && (
-          <p role="alert" className="text-center text-sm text-red-700">
+          <p id="amount-error" role="alert" className="text-center text-sm text-red-700">
             {errors.amount.message}
           </p>
         )}
@@ -137,6 +140,7 @@ export function ShelterStep() {
             <Button
               key={preset}
               type="button"
+              aria-pressed={Number(amount) === preset}
               variant={Number(amount) === preset ? 'primary' : 'secondary'}
               className="py-3"
               onClick={() => setValue('amount', String(preset), { shouldValidate: true })}

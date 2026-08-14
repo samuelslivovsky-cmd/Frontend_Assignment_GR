@@ -10,7 +10,9 @@ export default function DonationLayout({ children }: { children: ReactNode }) {
       <div className="flex min-h-[calc(100vh-3rem)] flex-1 justify-center lg:min-h-[calc(100vh-5rem)]">
         <div className="flex w-full max-w-[600px] flex-col gap-10">
           <Stepper />
-          <main className="flex flex-1 flex-col">{children}</main>
+          <main id="obsah" className="flex flex-1 flex-col">
+            {children}
+          </main>
           <Footer />
         </div>
       </div>

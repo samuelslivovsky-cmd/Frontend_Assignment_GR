@@ -25,4 +25,11 @@ body {
   select:disabled {
     cursor: not-allowed;
   }
+
+  /* Tailwind ships no default focus ring, so keyboard users would otherwise
+     have nothing to follow. Declared once instead of per component. */
+  :focus-visible {
+    outline: 2px solid var(--color-indigo-600);
+    outline-offset: 2px;
+  }
 }

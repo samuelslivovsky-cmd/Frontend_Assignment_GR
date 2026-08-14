@@ -1,4 +1,16 @@
-import type { ReactNode } from 'react'
+'use client'
+
+import { createContext, useContext, useId, type ReactNode } from 'react'
+
+type FieldAria = {
+  describedBy?: string
+  invalid: boolean
+}
+
+const FieldContext = createContext<FieldAria>({ invalid: false })
+
+/** Lets the controls inside a Field pick up its error wiring without threading props. */
+export const useFieldAria = () => useContext(FieldContext)
 
 type FieldProps = {
   label: ReactNode
@@ -9,18 +21,31 @@ type FieldProps = {
 }
 
 export function Field({ label, htmlFor, error, hint, children }: FieldProps) {
+  const generatedId = useId()
+  const id = htmlFor ?? generatedId
+  const errorId = `${id}-error`
+  const hintId = `${id}-hint`
+
+  const describedBy = error ? errorId : hint ? hintId : undefined
+
   return (
-    <div className="flex flex-col gap-2">
-      <label htmlFor={htmlFor} className="text-sm font-semibold text-gray-900">
-        {label}
-      </label>
-      {children}
-      {hint && !error && <p className="text-xs text-gray-500">{hint}</p>}
-      {error && (
-        <p role="alert" className="text-sm text-red-700">
-          {error}
-        </p>
-      )}
-    </div>
+    <FieldContext value={{ describedBy, invalid: Boolean(error) }}>
+      <div className="flex flex-col gap-2">
+        <label htmlFor={id} className="text-sm font-semibold text-gray-900">
+          {label}
+        </label>
+        {children}
+        {hint && !error && (
+          <p id={hintId} className="text-xs text-gray-500">
+            {hint}
+          </p>
+        )}
+        {error && (
+          <p id={errorId} role="alert" className="text-sm text-red-700">
+            {error}
+          </p>
+        )}
+      </div>
+    </FieldContext>
   )
 }

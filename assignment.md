@@ -32,7 +32,7 @@
 - [x] Validácia formulára pomocou Zod schémy
 - [ ] Lokalizačná knižnica na stringy
 - [ ] styled-components — zámerne nahradené Tailwind CSS
-- [ ] Accessibility — čiastočne: labely, `role="alert"`, `aria-current`; chýba `aria-invalid` a `aria-describedby`
+- [x] Accessibility — chyby naviazané cez `aria-invalid` a `aria-describedby`, focus na prvé chybné pole, viditeľný focus ring, skip link, landmarky, `aria-pressed` na presetoch
 
 ### Ak ostane čas
 

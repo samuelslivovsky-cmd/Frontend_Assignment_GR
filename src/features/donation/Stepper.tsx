@@ -10,7 +10,7 @@ export function Stepper() {
   const current = stepIndex(usePathname())
 
   return (
-    <ol className="flex items-center gap-4 text-sm font-medium">
+    <ol aria-label="Priebeh formulára" className="flex items-center gap-4 text-sm font-medium">
       {DONATION_STEPS.map((step, index) => {
         const isDone = index < current
         const isActive = index === current
@@ -33,6 +33,7 @@ export function Stepper() {
                 {isDone ? <Check className="size-4" /> : index + 1}
               </span>
               {step.label}
+              {isDone && <span className="sr-only">— vyplnené</span>}
             </span>
             {index < DONATION_STEPS.length - 1 && <span className="h-px flex-1 bg-gray-200" />}
           </li>
