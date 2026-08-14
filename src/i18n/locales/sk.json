@@ -10,6 +10,8 @@
     "confirmationStepDescription": "Skontrolujte zadané údaje a odošlite svoj príspevok nadácii Good Boy.",
     "contactTitle": "Kontakt",
     "contactDescription": "Napíšte nám, zavolajte alebo sa zastavte v našej kancelárii v Žiline.",
+    "thanksTitle": "Ďakujeme",
+    "thanksDescription": "Váš príspevok sme zaznamenali. Ďakujeme, že pomáhate slovenským útulkom.",
     "aboutTitle": "O projekte",
     "aboutDescription": "Nadácia Good Boy zachraňuje opustené a týrané psy v Žiline. Pozrite si, koľko sa už podarilo vyzbierať."
   },
@@ -76,6 +78,12 @@
     "consent": "Súhlasím so spracovaním mojich osobných údajov",
     "submit": "Odoslať formulár",
     "submitting": "Odosielam…"
+  },
+  "thanks": {
+    "heading": "Ďakujeme!",
+    "body": "Váš príspevok {{amount}} sme zaznamenali. Vďaka vám majú psíky v útulkoch o starosť menej.",
+    "donateAgain": "Prispieť znova",
+    "seeResults": "Pozrieť výsledky zbierky"
   },
   "results": {
     "loading": "Načítavam prehľad…",

@@ -11,6 +11,9 @@ export function Stepper() {
   const { t } = useTranslation()
   const current = stepIndex(usePathname())
 
+  // Routes outside the wizard (the thank-you page) share this layout but have no progress to show.
+  if (current === -1) return null
+
   return (
     <ol aria-label={t('steps.progress')} className="flex items-center gap-4 text-sm font-medium">
       {DONATION_STEPS.map((step, index) => {

@@ -78,6 +78,8 @@ Submit errors must be shown to the user in plain language, never swallowed.
 
 ## API
 
+**Currently stubbed.** `USE_PLACEHOLDER_DATA` in [shelters.ts](src/api/shelters.ts) is `true`, so all three calls return canned data instead of hitting the network. Flip it to `false` to restore the real endpoints — the request code below it is unchanged.
+
 Base URL `https://frontend-assignment-api.goodrequest.dev`, no auth. Spec: [data.json](https://frontend-assignment-api.goodrequest.dev/apidoc/data.json).
 
 ```

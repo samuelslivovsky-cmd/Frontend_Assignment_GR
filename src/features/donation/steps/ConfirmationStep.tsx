@@ -23,7 +23,7 @@ export function ConfirmationStep() {
   const router = useRouter()
   const shelter = useDonationStore((state) => state.shelter)
   const personal = useDonationStore((state) => state.personal)
-  const resetDraft = useDonationStore((state) => state.reset)
+  const complete = useDonationStore((state) => state.complete)
   const shelters = useShelters()
   const contribute = useContribute()
   const notify = useNotificationStore((state) => state.notify)
@@ -74,10 +74,10 @@ export function ConfirmationStep() {
 
   const onSubmit = handleSubmit(() =>
     contribute.mutate(toContributionPayload({ shelter, personal }), {
+      // Success is handled by the thank-you page, so only failures reach the toaster.
       onSuccess: ({ messages }) => {
-        messages.forEach(({ type, message }) => notify(type, message))
-        resetDraft()
-        router.push('/')
+        complete({ amount: shelter.amount, message: messages[0]?.message })
+        router.push('/dakujeme')
       },
       onError: (error) => notify('ERROR', errorMessage(error, t('common.unexpectedError'))),
     }),

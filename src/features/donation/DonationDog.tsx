@@ -22,7 +22,15 @@ function levelFor(amount: number): number {
   return THRESHOLDS.filter((threshold) => amount >= threshold).length
 }
 
-export function DonationDog({ amount }: { amount: number }) {
+// Explicit classes rather than a merged className, so the two sizes can never collide.
+const SIZES = { md: 'size-24', lg: 'size-40' }
+
+type DonationDogProps = {
+  amount: number
+  size?: keyof typeof SIZES
+}
+
+export function DonationDog({ amount, size = 'md' }: DonationDogProps) {
   const index = levelFor(amount)
   const { ear, eyes, mouth } = LEVELS[index]
   const isTongueOut = index >= 3
@@ -32,7 +40,7 @@ export function DonationDog({ amount }: { amount: number }) {
     <svg
       viewBox="0 0 100 100"
       aria-hidden
-      className="size-24 text-indigo-600"
+      className={`${SIZES[size]} text-indigo-600`}
       fill="none"
       stroke="currentColor"
       strokeWidth={3}

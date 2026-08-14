@@ -10,6 +10,8 @@
     "confirmationStepDescription": "Review your details and send your donation to the Good Boy Foundation.",
     "contactTitle": "Contact",
     "contactDescription": "Write to us, call us, or drop by our office in Žilina.",
+    "thanksTitle": "Thank you",
+    "thanksDescription": "Your donation has been recorded. Thank you for supporting Slovak dog shelters.",
     "aboutTitle": "About the project",
     "aboutDescription": "The Good Boy Foundation rescues abandoned and abused dogs in Žilina. See how much has been raised so far."
   },
@@ -76,6 +78,12 @@
     "consent": "I agree to the processing of my personal data",
     "submit": "Send the form",
     "submitting": "Sending…"
+  },
+  "thanks": {
+    "heading": "Thank you!",
+    "body": "Your donation of {{amount}} has been recorded. Thanks to you, the dogs in the shelters have one worry less.",
+    "donateAgain": "Donate again",
+    "seeResults": "See the results"
   },
   "results": {
     "loading": "Loading the overview…",
