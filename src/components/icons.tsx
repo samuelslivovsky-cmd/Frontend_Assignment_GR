@@ -51,6 +51,19 @@ export const Check = (props: IconProps) => (
   </Line>
 )
 
+export const Plus = (props: IconProps) => (
+  <Line {...props}>
+    <path d="M10 4.2v11.6M4.2 10h11.6" />
+  </Line>
+)
+
+export const Trash = (props: IconProps) => (
+  <Line {...props}>
+    <path d="M3.3 5.4h13.4M8.1 5.4V4.1a1.2 1.2 0 0 1 1.2-1.2h1.4a1.2 1.2 0 0 1 1.2 1.2v1.3m3 0v9.4a1.7 1.7 0 0 1-1.7 1.7H5.8a1.7 1.7 0 0 1-1.7-1.7V5.4" />
+    <path d="M8.3 8.8v4.6M11.7 8.8v4.6" />
+  </Line>
+)
+
 export const Mail = (props: IconProps) => (
   <Line {...props}>
     <path d="M2.5 6.25 9.06 10.6a1.7 1.7 0 0 0 1.88 0L17.5 6.25" />

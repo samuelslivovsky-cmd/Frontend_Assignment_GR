@@ -7,17 +7,16 @@ type DonationDraft = {
   personal: PersonalStepValues
 }
 
-// `contributors` is an array on the API, so multi-donor support later needs no payload change.
+// The API carries one `value` for the whole contribution, so several donors share
+// a single donation rather than each pledging their own amount.
 export function toContributionPayload({ shelter, personal }: DonationDraft): ContributionPayload {
   return {
-    contributors: [
-      {
-        firstName: personal.firstName,
-        lastName: personal.lastName,
-        email: personal.email,
-        phone: `${personal.phonePrefix}${personal.phone}`,
-      },
-    ],
+    contributors: personal.donors.map((donor) => ({
+      firstName: donor.firstName,
+      lastName: donor.lastName,
+      email: donor.email,
+      phone: `${donor.phonePrefix}${donor.phone}`,
+    })),
     shelterID: shelter.target === 'SHELTER' ? shelter.shelterId : null,
     value: shelter.amount,
   }

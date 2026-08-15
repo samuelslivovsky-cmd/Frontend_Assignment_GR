@@ -13,11 +13,13 @@ type FlagProps = ComponentProps<'svg'>
 
 // Typed against the schema's prefix union, so adding a prefix there without a
 // flag here is a compile error rather than a blank box at runtime.
-const PHONE_COUNTRIES: Record<PhonePrefix, { labelKey: string; Flag: (props: FlagProps) => ReactNode }> =
-  {
-    '+421': { labelKey: 'personalStep.countrySK', Flag: FlagSK },
-    '+420': { labelKey: 'personalStep.countryCZ', Flag: FlagCZ },
-  }
+const PHONE_COUNTRIES: Record<
+  PhonePrefix,
+  { labelKey: string; Flag: (props: FlagProps) => ReactNode }
+> = {
+  '+421': { labelKey: 'personalStep.countrySK', Flag: FlagSK },
+  '+420': { labelKey: 'personalStep.countryCZ', Flag: FlagCZ },
+}
 
 type PhoneFieldProps = {
   prefix: PhonePrefix
@@ -52,7 +54,8 @@ export function PhoneField({ prefix, onPrefixChange, onPrefixBlur, numberProps }
         <span className="pointer-events-none absolute inset-y-0 left-4 flex items-center text-gray-900">
           {prefix}
         </span>
-        <TextInput {...numberProps} type="tel" autoComplete="tel-national" className="pl-16" />
+        {/* Default before the spread, so a caller can scope autofill per donor. */}
+        <TextInput autoComplete="tel-national" {...numberProps} type="tel" className="pl-16" />
       </div>
     </div>
   )

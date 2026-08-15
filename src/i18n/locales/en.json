@@ -23,6 +23,7 @@
     "language": "Language",
     "dismissNotification": "Dismiss notification",
     "unexpectedError": "Something went wrong.",
+    "remove": "Remove",
     "woof": "WOOF WOOF",
     "required": "required",
     "optional": "optional",
@@ -66,7 +67,19 @@
     "phonePlaceholder": "123 321 123",
     "countryPrefix": "Country code",
     "countrySK": "Slovakia",
-    "countryCZ": "Czechia"
+    "countryCZ": "Czechia",
+    "donor": "Donor {{index}}",
+    "addDonor": "Add another donor",
+    "donorLimit": "We can take at most {{max}} donors at once.",
+    "donorCount_one": "{{count}} donor in the form",
+    "donorCount_other": "{{count}} donors in the form",
+    "donorIncomplete": "Fill in the previous donor first.",
+    "newDonor": "New donor",
+    "fillDetails": "Fill in the contact details",
+    "donorHasErrors": "Details missing or invalid",
+    "edit": "Edit",
+    "close": "Collapse",
+    "removeDonor": "Remove donor"
   },
   "confirmationStep": {
     "heading": "Check the details you entered",
@@ -82,7 +95,9 @@
     "phone": "Phone number",
     "consent": "I agree to the processing of my personal data",
     "submit": "Send the form",
-    "submitting": "Sending…"
+    "submitting": "Sending…",
+    "sharedDonation": "This is a joint donation — it will be credited to all {{count}} donors.",
+    "consentLabel": "Consent to data processing"
   },
   "thanks": {
     "heading": "Thank you!",

@@ -152,7 +152,7 @@ export function SelectField({
         onClick={() => (isOpen ? setOpen(false) : open())}
         onKeyDown={onKeyDown}
         onBlur={onBlur}
-        className={`flex w-full items-center gap-2 rounded-lg bg-gray-100 py-3 text-left text-gray-900 aria-invalid:outline-2 aria-invalid:outline-red-600 disabled:opacity-60 ${
+        className={`flex w-full items-center gap-2 rounded-lg bg-gray-100 py-3 text-left text-gray-900 disabled:opacity-60 aria-invalid:outline-2 aria-invalid:outline-red-600 ${
           isCompact ? 'justify-center px-3' : 'px-4'
         }`}
       >

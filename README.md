@@ -22,17 +22,17 @@ Pri nasadení treba nastaviť `NEXT_PUBLIC_SITE_URL` na verejnú adresu — z ne
 
 ## Technológie
 
-| Vrstva | Voľba |
-| --- | --- |
-| Framework | Next.js 16, App Router, React 19 |
-| Jazyk | TypeScript |
-| Server state | TanStack Query |
-| Client state | zustand |
-| Formuláre | react-hook-form |
-| Validácia | Zod |
-| Preklady | i18next + react-i18next |
-| Animácie | Motion (framer-motion) |
-| Štýlovanie | Tailwind CSS v4 |
+| Vrstva       | Voľba                            |
+| ------------ | -------------------------------- |
+| Framework    | Next.js 16, App Router, React 19 |
+| Jazyk        | TypeScript                       |
+| Server state | TanStack Query                   |
+| Client state | zustand                          |
+| Formuláre    | react-hook-form                  |
+| Validácia    | Zod                              |
+| Preklady     | i18next + react-i18next          |
+| Animácie     | Motion (framer-motion)           |
+| Štýlovanie   | Tailwind CSS v4                  |
 
 ## Štruktúra
 

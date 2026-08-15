@@ -39,8 +39,8 @@ Optional extras the brief rewards: i18next for strings, accessibility, responsiv
 ## Code style
 
 - **DRY.** Extract on the second occurrence, not the third. Shared field wrappers, one API client, one query-key factory.
-- **Small functions that explain themselves.** A function does one thing and its name says what. If you need a comment to explain *what* it does, rename or split it instead.
-- **Comments only when they earn it** — non-obvious *why*, workarounds, business rules that look arbitrary. No restating code, no section banners, no JSDoc on self-evident helpers.
+- **Small functions that explain themselves.** A function does one thing and its name says what. If you need a comment to explain _what_ it does, rename or split it instead.
+- **Comments only when they earn it** — non-obvious _why_, workarounds, business rules that look arbitrary. No restating code, no section banners, no JSDoc on self-evident helpers.
 - Named exports; `default` only where a framework demands it (pages, layouts).
 - No `any`. Derive types from Zod schemas and API response types rather than duplicating shapes.
 - Server Components by default; `'use client'` only on the leaves that need interactivity.
@@ -50,11 +50,11 @@ Optional extras the brief rewards: i18next for strings, accessibility, responsiv
 
 The design is a **3-step wizard**, one route per step so each can carry its own metadata:
 
-| Route | Step | Contents |
-| --- | --- | --- |
-| `/` | Výber útulku | target toggle, shelter select, amount + presets |
-| `/osobne-udaje` | Osobné údaje | first name, last name, e-mail, phone |
-| `/potvrdenie` | Potvrdenie | read-only summary, GDPR consent, submit |
+| Route           | Step         | Contents                                        |
+| --------------- | ------------ | ----------------------------------------------- |
+| `/`             | Výber útulku | target toggle, shelter select, amount + presets |
+| `/osobne-udaje` | Osobné údaje | first name, last name, e-mail, phone            |
+| `/potvrdenie`   | Potvrdenie   | read-only summary, GDPR consent, submit         |
 
 Each step validates against its own Zod schema and writes the parsed values into the zustand draft store (`features/donation/store.ts`). The draft is memory-only, so `RequireDraft` bounces a direct hit on a later step back to `/`. Plus two static pages: `/kontakt` and `/o-projekte` (the latter shows the `results` totals).
 
@@ -64,13 +64,13 @@ Amount: preset options plus a custom value. Required, must be > 0 and at most `M
 
 Personal data:
 
-| Field | Required | Rule |
-| --- | --- | --- |
-| First name | yes | 2–20 chars — the brief calls it optional, but the API 400s on an empty `firstName` |
-| Last name | yes | 2–30 chars |
-| E-mail | yes | valid e-mail |
-| Phone | yes | SK/CZ number, `+421` / `+420` prefix with the country flag shown |
-| GDPR consent | yes | must be checked |
+| Field        | Required | Rule                                                                               |
+| ------------ | -------- | ---------------------------------------------------------------------------------- |
+| First name   | yes      | 2–20 chars — the brief calls it optional, but the API 400s on an empty `firstName` |
+| Last name    | yes      | 2–30 chars                                                                         |
+| E-mail       | yes      | valid e-mail                                                                       |
+| Phone        | yes      | SK/CZ number, `+421` / `+420` prefix with the country flag shown                   |
+| GDPR consent | yes      | must be checked                                                                    |
 
 Submit errors must be shown to the user in plain language, never swallowed.
 

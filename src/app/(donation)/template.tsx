@@ -7,5 +7,5 @@ import type { ReactNode } from 'react'
  * skeletons included — until hydration finished.
  */
 export default function DonationTemplate({ children }: { children: ReactNode }) {
-  return <div className="step-enter flex flex-1 flex-col">{children}</div>
+  return <div className="step-enter flex flex-1 flex-col lg:min-h-0">{children}</div>
 }

@@ -7,6 +7,9 @@ export const PHONE_PREFIXES = ['+421', '+420'] as const
 /** Above this the donation is worth arranging personally rather than through a web form. */
 export const MAX_DONATION = 10_000
 
+/** The API takes any number of contributors; past this the summary stops being readable. */
+export const MAX_DONORS = 5
+
 export type PhonePrefix = (typeof PHONE_PREFIXES)[number]
 
 // Schemas are built per translation function so validation messages follow the
@@ -76,14 +79,24 @@ export const createShelterStepSchema = (t: TFunction) =>
       }
     })
 
-export const createPersonalStepSchema = (t: TFunction) =>
+export const createDonorSchema = (t: TFunction) =>
   z.object({
     // The brief calls the first name optional, but the API rejects an empty firstName with a 400.
     firstName: requiredText(t, t('validation.labelFirstName'), 2, 20),
     lastName: requiredText(t, t('validation.labelLastName'), 2, 30),
-    email: z.string().trim().pipe(z.email(t('validation.emailInvalid'))),
+    email: z
+      .string()
+      .trim()
+      .pipe(z.email(t('validation.emailInvalid'))),
     phonePrefix: z.enum(PHONE_PREFIXES),
     phone: phone(t),
+  })
+
+// One shared donation credited to everyone listed — the API carries a single
+// `value` alongside the contributor array, so the amount is not split per donor.
+export const createPersonalStepSchema = (t: TFunction) =>
+  z.object({
+    donors: z.array(createDonorSchema(t)).min(1).max(MAX_DONORS),
   })
 
 export const createConfirmationStepSchema = (t: TFunction) =>
@@ -93,10 +106,21 @@ export const createConfirmationStepSchema = (t: TFunction) =>
 
 type ShelterSchema = ReturnType<typeof createShelterStepSchema>
 type PersonalSchema = ReturnType<typeof createPersonalStepSchema>
+type DonorSchema = ReturnType<typeof createDonorSchema>
 type ConfirmationSchema = ReturnType<typeof createConfirmationStepSchema>
 
 export type ShelterStepInput = z.input<ShelterSchema>
 export type ShelterStepValues = z.output<ShelterSchema>
 export type PersonalStepInput = z.input<PersonalSchema>
 export type PersonalStepValues = z.output<PersonalSchema>
+export type DonorInput = z.input<DonorSchema>
+export type DonorValues = z.output<DonorSchema>
 export type ConfirmationStepInput = z.input<ConfirmationSchema>
+
+export const EMPTY_DONOR: DonorInput = {
+  firstName: '',
+  lastName: '',
+  email: '',
+  phonePrefix: '+421',
+  phone: '',
+}

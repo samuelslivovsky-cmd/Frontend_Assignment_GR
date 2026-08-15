@@ -23,6 +23,7 @@
     "language": "Jazyk",
     "dismissNotification": "Zavrieť oznámenie",
     "unexpectedError": "Nastala neočakávaná chyba.",
+    "remove": "Odstrániť",
     "woof": "HAU HAU",
     "required": "povinné",
     "optional": "nepovinné",
@@ -66,7 +67,20 @@
     "phonePlaceholder": "123 321 123",
     "countryPrefix": "Predvoľba krajiny",
     "countrySK": "Slovensko",
-    "countryCZ": "Česko"
+    "countryCZ": "Česko",
+    "donor": "Darca {{index}}",
+    "addDonor": "Pridať ďalšieho darcu",
+    "donorLimit": "Naraz vieme prijať najviac {{max}} darcov.",
+    "donorCount_one": "{{count}} darca vo formulári",
+    "donorCount_few": "{{count}} darcovia vo formulári",
+    "donorCount_other": "{{count}} darcov vo formulári",
+    "donorIncomplete": "Najprv vyplňte údaje predchádzajúceho darcu.",
+    "newDonor": "Nový darca",
+    "fillDetails": "Vyplňte kontaktné údaje",
+    "donorHasErrors": "Chýbajú alebo sú chybné údaje",
+    "edit": "Upraviť",
+    "close": "Zbaliť",
+    "removeDonor": "Odstrániť darcu"
   },
   "confirmationStep": {
     "heading": "Skontrolujte si zadané údaje",
@@ -82,7 +96,9 @@
     "phone": "Telefónne číslo",
     "consent": "Súhlasím so spracovaním mojich osobných údajov",
     "submit": "Odoslať formulár",
-    "submitting": "Odosielam…"
+    "submitting": "Odosielam…",
+    "sharedDonation": "Príspevok je spoločný — pripíšeme ho všetkým {{count}} darcom.",
+    "consentLabel": "Súhlas so spracovaním údajov"
   },
   "thanks": {
     "heading": "Ďakujeme!",

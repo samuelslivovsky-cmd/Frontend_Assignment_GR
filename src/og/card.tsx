@@ -35,49 +35,47 @@ const dogUri = `data:image/svg+xml;utf8,${encodeURIComponent(DOG)}`
 /** Shared social card so every route renders the same layout with its own wording. */
 export function ogCard(title: string, subtitle: string) {
   return new ImageResponse(
-    (
-      <div style={{ display: 'flex', width: '100%', height: '100%', background: '#fff' }}>
-        <div
-          style={{
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'space-between',
-            width: 760,
-            padding: 64,
-          }}
-        >
-          <div style={{ display: 'flex' }}>
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={logoUri} width={186} height={48} alt="Good boy" />
-          </div>
-
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
-            <div style={{ fontSize: 62, fontWeight: 700, lineHeight: 1.1, color: '#111827' }}>
-              {title}
-            </div>
-            <div style={{ fontSize: 28, lineHeight: 1.4, color: '#4b5563' }}>{subtitle}</div>
-          </div>
-
-          <div style={{ display: 'flex', fontSize: 24, color: '#4f46e5' }}>
-            Podporte slovenské útulky pre psov
-          </div>
+    <div style={{ display: 'flex', width: '100%', height: '100%', background: '#fff' }}>
+      <div
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'space-between',
+          width: 760,
+          padding: 64,
+        }}
+      >
+        <div style={{ display: 'flex' }}>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src={logoUri} width={186} height={48} alt="Good boy" />
         </div>
 
-        <div
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            width: 440,
-            height: '100%',
-            background: '#4f46e5',
-          }}
-        >
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={dogUri} width={300} height={300} alt="" />
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
+          <div style={{ fontSize: 62, fontWeight: 700, lineHeight: 1.1, color: '#111827' }}>
+            {title}
+          </div>
+          <div style={{ fontSize: 28, lineHeight: 1.4, color: '#4b5563' }}>{subtitle}</div>
+        </div>
+
+        <div style={{ display: 'flex', fontSize: 24, color: '#4f46e5' }}>
+          Podporte slovenské útulky pre psov
         </div>
       </div>
-    ),
+
+      <div
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          width: 440,
+          height: '100%',
+          background: '#4f46e5',
+        }}
+      >
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src={dogUri} width={300} height={300} alt="" />
+      </div>
+    </div>,
     size,
   )
 }

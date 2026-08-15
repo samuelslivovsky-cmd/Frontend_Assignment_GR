@@ -1,5 +1,4 @@
-const API_URL =
-  process.env.NEXT_PUBLIC_API_URL ?? 'https://frontend-assignment-api.goodrequest.dev'
+const API_URL = process.env.NEXT_PUBLIC_API_URL ?? 'https://frontend-assignment-api.goodrequest.dev'
 
 export type ApiMessageType = 'ERROR' | 'WARNING' | 'INFO' | 'SUCCESS'
 

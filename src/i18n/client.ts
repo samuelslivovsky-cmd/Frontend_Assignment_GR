@@ -33,8 +33,7 @@ if (process.env.NODE_ENV !== 'production') {
   }
 }
 
-const isSupported = (value: string | null): value is Locale =>
-  LOCALES.includes(value as Locale)
+const isSupported = (value: string | null): value is Locale => LOCALES.includes(value as Locale)
 
 function preferredLocale(): Locale {
   const stored = localStorage.getItem(STORAGE_KEY)

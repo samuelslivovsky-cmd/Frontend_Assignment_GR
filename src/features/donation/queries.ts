@@ -2,11 +2,7 @@
 
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 
-import {
-  getContributionResults,
-  getShelters,
-  postContribution,
-} from '@/api/shelters'
+import { getContributionResults, getShelters, postContribution } from '@/api/shelters'
 
 export const shelterKeys = {
   all: ['shelters'] as const,

@@ -65,9 +65,7 @@ function CompactSteps({ current, isPinned }: { current: number; isPinned: boolea
       {/* Once pinned the heading shrinks to a single small line, so the bar costs
           roughly half the height it does at rest. */}
       <div className="flex items-baseline justify-between gap-3">
-        <p
-          className={`font-bold text-gray-900 transition-all ${isPinned ? 'text-sm' : 'text-lg'}`}
-        >
+        <p className={`font-bold text-gray-900 transition-all ${isPinned ? 'text-sm' : 'text-lg'}`}>
           {t(DONATION_STEPS[current].labelKey)}
         </p>
         <p className="shrink-0 text-xs font-semibold tracking-wide text-indigo-600 uppercase">
@@ -138,7 +136,9 @@ function FullSteps({ current }: { current: number }) {
             </span>
             {/* Three labels only fit once the column is wide. Below `xl` just the
                 current step is named; the others stay available to screen readers. */}
-            <span className={`whitespace-nowrap xl:not-sr-only ${isActive ? 'not-sr-only' : 'sr-only'}`}>
+            <span
+              className={`whitespace-nowrap xl:not-sr-only ${isActive ? 'not-sr-only' : 'sr-only'}`}
+            >
               {t(step.labelKey)}
             </span>
             {isDone && <span className="sr-only">{t('steps.completed')}</span>}

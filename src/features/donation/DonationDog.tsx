@@ -122,9 +122,7 @@ export function DonationDog({ amount, size = 'md' }: DonationDogProps) {
         </>
       )}
 
-      {isTongueOut && (
-        <path d="M46 67h8v4a4 4 0 0 1-8 0Z" fill="currentColor" fillOpacity={0.25} />
-      )}
+      {isTongueOut && <path d="M46 67h8v4a4 4 0 0 1-8 0Z" fill="currentColor" fillOpacity={0.25} />}
 
       {isEcstatic && (
         <>

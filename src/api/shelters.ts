@@ -29,7 +29,7 @@ export type ContributionPayload = {
  * Set this to false to talk to the real endpoints again; the calls below are
  * untouched and still type-checked.
  */
-const USE_PLACEHOLDER_DATA: boolean = true
+const USE_PLACEHOLDER_DATA: boolean = false
 
 const PLACEHOLDER_SHELTERS: Shelter[] = [
   { id: 1, name: 'Žilinský útulok o.z.' },
