@@ -12,6 +12,7 @@ import { LanguageSwitcher } from './LanguageSwitcher'
 const LINKS = [
   { href: '/kontakt', labelKey: 'nav.contact' },
   { href: '/o-projekte', labelKey: 'nav.about' },
+  { href: '/darcovia', labelKey: 'nav.donors' },
 ]
 
 const SOCIALS = [

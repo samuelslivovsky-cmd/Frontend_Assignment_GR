@@ -6,7 +6,7 @@ import { serverT } from '@/i18n/server'
 export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'http://localhost:3000'
 
 /** Routes that stand on their own when a visitor lands on them straight from search. */
-export const PUBLIC_ROUTES = ['/', '/kontakt', '/o-projekte'] as const
+export const PUBLIC_ROUTES = ['/', '/kontakt', '/o-projekte', '/darcovia'] as const
 
 /** The rest of the wizard: without a draft in memory these bounce back to `/`. */
 export const PRIVATE_ROUTES = ['/osobne-udaje', '/potvrdenie', '/dakujeme'] as const

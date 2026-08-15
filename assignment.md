@@ -16,7 +16,7 @@
 - [x] Odoslanie zvalidovaného formulára so zrozumiteľným chybovým stavom
 - [x] Stránka Kontakt
 - [x] Celková vyzbieraná suma a počet darcov na stránke O projekte
-- [ ] Zoznam darcov — endpoint vracia len počet, nie mená
+- [x] Zoznam darcov — stránka `/darcovia` s filtrom, radením a dopĺňaním po stránkach; endpoint vracia len počet, nie mená, takže zoznam beží na ukážkových dátach v tvare skutočnej odpovede
 
 ### Kritériá na technológie
 

@@ -13,7 +13,9 @@
     "thanksTitle": "Ďakujeme",
     "thanksDescription": "Váš príspevok sme zaznamenali. Ďakujeme, že pomáhate slovenským útulkom.",
     "aboutTitle": "O projekte",
-    "aboutDescription": "Nadácia Good Boy zachraňuje opustené a týrané psy v Žiline. Pozrite si, koľko sa už podarilo vyzbierať."
+    "aboutDescription": "Nadácia Good Boy zachraňuje opustené a týrané psy v Žiline. Pozrite si, koľko sa už podarilo vyzbierať.",
+    "donorsTitle": "Darcovia",
+    "donorsDescription": "Ľudia, vďaka ktorým majú psíky v slovenských útulkoch o starosť menej. Pozrite si posledné príspevky."
   },
   "common": {
     "back": "Späť",
@@ -31,7 +33,8 @@
   },
   "nav": {
     "contact": "Kontakt",
-    "about": "O projekte"
+    "about": "O projekte",
+    "donors": "Darcovia"
   },
   "steps": {
     "progress": "Priebeh formulára",
@@ -111,6 +114,26 @@
     "total": "Celková vyzbieraná hodnota",
     "donors": "Počet darcov"
   },
+  "donors": {
+    "heading": "Darcovia",
+    "intro": "Za každým číslom vyššie je konkrétny človek, ktorý sa rozhodol pomôcť. Toto sú najnovšie príspevky.",
+    "listHeading": "Posledné príspevky",
+    "filterShelter": "Útulok",
+    "filterAll": "Všetky príspevky",
+    "filterFoundation": "Príspevky nadácii",
+    "sortLabel": "Zoradiť",
+    "sortNewest": "Od najnovších",
+    "sortAmount": "Od najvyššej sumy",
+    "shown": "Zobrazených {{shown}} z {{total}}",
+    "foundation": "Príspevok nadácii",
+    "loading": "Načítavam darcov…",
+    "loadMore": "Načítať ďalších",
+    "loadingMore": "Načítavam…",
+    "error": "Zoznam darcov sa nepodarilo načítať.",
+    "empty": "Tomuto útulku zatiaľ nikto neprispel. Buďte prvý.",
+    "clearFilter": "Zobraziť všetky príspevky",
+    "disclaimer": "Mená a sumy v zozname sú ukážkové — verejné API vracia len počet darcov, nie ich zoznam. Súhrnné čísla nad zoznamom sú skutočné."
+  },
   "contact": {
     "heading": "Kontakt",
     "emailTitle": "Email",
@@ -122,6 +145,7 @@
   },
   "about": {
     "heading": "O projekte",
+    "seeDonors": "Pozrieť, kto prispel",
     "paragraph1": "Nadácia Good Boy sa venuje zlepšovaniu života psov v Žiline na Slovensku. Zachraňujeme opustené, týrané a bezdomovské psy, poskytujeme im lekársku starostlivosť, útočisko a lásku, ktorú si zaslúžia. Naším poslaním je dať týmto verným spoločníkom druhú šancu na život tým, že im nájdeme milujúci domov. Okrem záchrany a rehabilitácie sa zameriavame aj na podporu zodpovedného vlastníctva zvierat a ochrany zvierat prostredníctvom vzdelávacích a komunitných programov.",
     "paragraph2": "Naša práca je možná vďaka podpore vášnivých dobrovoľníkov, štedrých darcov a komunity, ktorá sa hlboko stará o dobro zvierat. Organizujeme aj kastračné a sterilizačné iniciatívy, aby sme riešili problém túlavých psov a zabezpečili dlhodobý vplyv. V nadácii Good Boy veríme, že každý pes si zaslúži bezpečný, milujúci domov a šťastný život. Pridajte sa k nám a pomôžte nám robiť zmeny – či už dobrovoľníctvom, darovaním alebo adopciou chlpatého priateľa. Spoločne môžeme vytvoriť lepšiu budúcnosť pre psy v Žiline."
   },

@@ -46,10 +46,12 @@ src/
 │   │   └── potvrdenie/          krok 3: zhrnutie a odoslanie
 │   ├── kontakt/
 │   ├── o-projekte/          text nadácie + vyzbieraná suma a počet darcov
+│   ├── darcovia/            zoznam posledných príspevkov
 │   ├── layout.tsx
 │   └── providers.tsx        QueryClientProvider
 ├── components/              zdieľané UI — polia formulára, pätička, notifikácie
 ├── features/donation/       doména daru: schémy, store, kroky, dopyty
+├── features/donors/         zoznam darcov: dopyt, riadok, filtre
 ├── i18n/                    preklady a inicializácia i18next
 └── store/                   globálne notifikácie
 ```
@@ -69,6 +71,8 @@ Kód je členený podľa domény, nie podľa typu súboru. Všetko, čo sa týka
 **Sociálne náhľady sa generujú za behu buildu.** [og/card.tsx](src/og/card.tsx) je jedna šablóna, ktorú si každá routa naplní vlastným nadpisom cez `next/og`. Kresba je vektorová zámerne — Satori bitmapovú fotku ticho zahodí a výsledný obrázok má vďaka tomu pár kilobajtov namiesto stoviek.
 
 **Server state ide výhradne cez TanStack Query.** Hooky v [queries.ts](src/features/donation/queries.ts) používajú spoločnú query key factory; po úspešnom odoslaní sa invaliduje prehľad vyzbieranej sumy, takže čísla na stránke O projekte sú okamžite aktuálne.
+
+**Zoznam darcov beží na ukážkových dátach.** Verejné API vracia len počet darcov, nie ich mená, takže dáta pre [/darcovia](<src/app/(static)/darcovia>) generuje seedovaný mock. Dôležité je, akým tvarom ich vydáva: [donors.ts](src/api/donors.ts) filtruje, radí aj stránkuje ako skutočný endpoint a vracia `{ donors, nextPage, total }`, takže `useInfiniteQuery` nad ním je rovnaký ako nad živým API a prechod naň je výmena tela jednej funkcie. Filtre sú súčasťou query key, takže ich zmena resetuje stránkovanie sama a návrat k predošlému výberu je z cache.
 
 ## Známe obmedzenie prekladov
 

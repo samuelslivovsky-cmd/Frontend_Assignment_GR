@@ -13,7 +13,9 @@
     "thanksTitle": "Thank you",
     "thanksDescription": "Your donation has been recorded. Thank you for supporting Slovak dog shelters.",
     "aboutTitle": "About the project",
-    "aboutDescription": "The Good Boy Foundation rescues abandoned and abused dogs in Žilina. See how much has been raised so far."
+    "aboutDescription": "The Good Boy Foundation rescues abandoned and abused dogs in Žilina. See how much has been raised so far.",
+    "donorsTitle": "Donors",
+    "donorsDescription": "The people who make sure the dogs in Slovak shelters have one worry less. See the latest donations."
   },
   "common": {
     "back": "Back",
@@ -31,7 +33,8 @@
   },
   "nav": {
     "contact": "Contact",
-    "about": "About"
+    "about": "About",
+    "donors": "Donors"
   },
   "steps": {
     "progress": "Form progress",
@@ -110,6 +113,26 @@
     "total": "Total amount raised",
     "donors": "Number of donors"
   },
+  "donors": {
+    "heading": "Donors",
+    "intro": "Behind every number above is a person who decided to help. These are the latest donations.",
+    "listHeading": "Latest donations",
+    "filterShelter": "Shelter",
+    "filterAll": "All donations",
+    "filterFoundation": "Donations to the foundation",
+    "sortLabel": "Sort by",
+    "sortNewest": "Newest first",
+    "sortAmount": "Highest amount first",
+    "shown": "Showing {{shown}} of {{total}}",
+    "foundation": "Donation to the foundation",
+    "loading": "Loading donors…",
+    "loadMore": "Load more",
+    "loadingMore": "Loading…",
+    "error": "The list of donors could not be loaded.",
+    "empty": "Nobody has donated to this shelter yet. Be the first.",
+    "clearFilter": "Show all donations",
+    "disclaimer": "The names and amounts listed here are illustrative — the public API returns only the number of donors, not the list. The summary figures above are real."
+  },
   "contact": {
     "heading": "Contact",
     "emailTitle": "Email",
@@ -121,6 +144,7 @@
   },
   "about": {
     "heading": "About the project",
+    "seeDonors": "See who has donated",
     "paragraph1": "The Good Boy Foundation is dedicated to improving the lives of dogs in Žilina, Slovakia. We rescue abandoned, abused and stray dogs, and give them the medical care, shelter and love they deserve. Our mission is to give these loyal companions a second chance at life by finding them a loving home. Beyond rescue and rehabilitation, we also promote responsible pet ownership and animal welfare through education and community programmes.",
     "paragraph2": "Our work is made possible by passionate volunteers, generous donors and a community that cares deeply about animal welfare. We also run neutering and spaying initiatives to address the stray dog problem and secure a long-term impact. At the Good Boy Foundation we believe every dog deserves a safe, loving home and a happy life. Join us and help us make a difference — by volunteering, donating or adopting a furry friend. Together we can build a better future for the dogs of Žilina."
   },
