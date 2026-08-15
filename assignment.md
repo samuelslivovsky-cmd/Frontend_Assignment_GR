@@ -32,7 +32,7 @@
 - [x] Validácia formulára pomocou Zod schémy
 - [x] Lokalizačná knižnica na stringy — i18next, slovenčina a angličtina, prepínač v pätičke
 - [ ] styled-components — zámerne nahradené Tailwind CSS
-- [x] Accessibility — chyby naviazané cez `aria-invalid` a `aria-describedby`, focus na prvé chybné pole, viditeľný focus ring, skip link, landmarky, `aria-pressed` na presetoch
+- [x] Accessibility — chyby naviazané cez `aria-invalid` a `aria-describedby`, focus na prvé chybné pole, viditeľný focus ring, landmarky, `aria-pressed` na presetoch
 
 ### Ak ostane čas
 

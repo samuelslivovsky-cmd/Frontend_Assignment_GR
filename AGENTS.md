@@ -78,7 +78,9 @@ Submit errors must be shown to the user in plain language, never swallowed.
 
 ## API
 
-**Currently stubbed.** `USE_PLACEHOLDER_DATA` in [shelters.ts](src/api/shelters.ts) is `true`, so all three calls return canned data instead of hitting the network. Flip it to `false` to restore the real endpoints — the request code below it is unchanged.
+**Live.** `USE_PLACEHOLDER_DATA` in [shelters.ts](src/api/shelters.ts) is `false`, so all three calls hit the real endpoints — including `contribute`, which means test submissions land in the public donation counter. Flip it to `true` to develop against the canned data below it; the request code is unchanged either way.
+
+The donor list has no endpoint at all: `results` returns a count, never names. [donors.ts](src/api/donors.ts) therefore serves a seeded mock shaped like a real paginated response — see the doc comment on `getDonors`.
 
 Base URL `https://frontend-assignment-api.goodrequest.dev`, no auth. Spec: [data.json](https://frontend-assignment-api.goodrequest.dev/apidoc/data.json).
 
